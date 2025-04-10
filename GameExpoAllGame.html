@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="hero_title">GAME SALE EXPO 2025 - The Biggest Game Sale Event</title>
+  <meta name="description" content="Discover amazing deals on your favorite games at the Game Sale Expo 2025. Limited time offers and exclusive bundles available." />
+  <meta name="generator" content="v0.dev" />
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- PapaParse 用於解析 CSV -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <style>
+    /* 自定義 CSS 變數 (globals.css) */
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 0 0% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 0 0% 3.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 0 0% 3.9%;
+      --primary: 24 100% 50%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 0 0% 96.1%;
+      --secondary-foreground: 0 0% 9%;
+      --muted: 0 0% 96.1%;
+      --muted-foreground: 0 0% 45.1%;
+      --accent: 0 0% 96.1%;
+      --accent-foreground: 0 0% 9%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 0 0% 89.8%;
+      --input: 0 0% 89.8%;
+      --ring: 24 100% 50%;
+      --radius: 0.5rem;
+    }
+    .dark {
+      --background: 0 0% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 0 0% 3.9%;
+      --card-foreground: 0 0% 98%;
+      --popover: 0 0% 3.9%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 24 100% 50%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 0 0% 14.9%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 0 0% 14.9%;
+      --muted-foreground: 0 0% 63.9%;
+      --accent: 0 0% 14.9%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 0 0% 14.9%;
+      --input: 0 0% 14.9%;
+      --ring: 24 100% 50%;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+    }
+    .container {
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    /* 遊戲卡片圖片放大效果 */
+    .zoom-image {
+      transition: transform 0.5s ease;
+    }
+    .zoom-image:hover {
+      transform: scale(1.2);
+    }
+    /* 淡入動畫 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="flex min-h-screen flex-col">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-black border-b border-orange-500">
+      <div class="container flex h-16 items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span data-i18n="logo_text" class="text-orange-500 font-bold text-xl">East Asia Indie Games Celebration</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="/IndieGameWebTW/GameExpo" data-i18n="home" class="text-white hover:text-orange-400 transition-colors">首頁</a>
+          <a href="/IndieGameWebTW/GameExpo#news-section" data-i18n="news" class="text-white hover:text-orange-400 transition-colors">NEWS</a>
+          <a href="#deals-section" data-i18n="games" class="text-white hover:text-orange-400 transition-colors">GAMES</a>
+          <a href="/IndieGameWebTW/GameExpo#contact-section" data-i18n="contact" class="text-white hover:text-orange-400 transition-colors">CONTACT</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <!-- 語言切換下拉選單 -->
+          <select id="language-select" class="bg-black text-white text-sm border border-orange-500 rounded px-1">
+            <option value="zh" data-i18n="language_zh">中文</option>
+            <option value="en" data-i18n="language_en">EN</option>
+            <option value="ja" data-i18n="language_ja">日本語</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+      <!-- Featured Deals 區 -->
+      <section id="deals-section" class="py-12 bg-white">
+        <div class="container">
+          <div class="flex items-center justify-between mb-8">
+            <h2 data-i18n="featured_deals" class="text-2xl font-bold">FEATURED DEALS</h2>
+          </div>
+          <div id="featured-deals-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 遊戲卡片由 JS 動態注入 -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white border-t border-orange-500">
+      <div class="container py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="flex items-center gap-2">
+            <span data-i18n="logo_text" class="text-orange-500 font-bold">GAME SALE EXPO</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <a href="#" data-i18n="organizer" class="text-gray-400 ">舉辦單位:</a>
+            <a href="https://leojuan1234.wordpress.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors">焊蛙遊戲</a>
+            <a href="https://linktr.ee/yohcanstudio" target="_blank" class="text-gray-400 hover:text-white transition-colors">葉開罐工作室</a>
+            <a href="https://www.arcadegalaxy.space/" target="_blank" class="text-gray-400 hover:text-white transition-colors">第九商行</a>
+            <a href="https://x.com/FilterGame_Dev/" target="_blank" class="text-gray-400 hover:text-white transition-colors">FilterGame</a>
+          </div>
+        </div>
+        <div data-i18n="copyright" class="text-center text-gray-500 text-sm mt-8">© 2025 East Asia Indie Games Celebration. All rights reserved.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JavaScript：多國語系、Featured Deals 隨機顯示、淡入動畫 -->
+  <script>
+    const translations = {
+      en: {
+        logo_text: "East Asia Indie Games Celebration",
+        home: "Home",
+        news: "News",
+        deals: "Deals",
+        games: "Games",
+        contact: "Contact",
+        browse_deals: "Register Now",
+        hero_title: "East Asia Indie Games Celebration 2025",
+        hero_date: "August 5, 2025 - August 19, 2025",
+        hero_description: "We sincerely invite independent game development teams from across East Asia (including Taiwan, China, Japan, Korea, Hong Kong, Macau, and other East Asian regions) to participate in this grand online game sale event and showcase our rich and diverse creative game culture.",
+        featured_deals: "Games & Special Offers",
+        news_section: "News",
+        news_item: "East Asia Indie Games Celebration - Registration Open!",
+        news_item2: "East Asia Indie Games Celebration - First Batch of Participants Announced",
+        news_full_item_1: "We sincerely invite independent game development teams from across East Asia (including Taiwan, China, Japan, Korea, Hong Kong, Macau, and other East Asian regions) to participate in this grand online game sale event. Please submit your game details by April 4, 2025 (GMT+8) for initial approval.",
+        news_full_item_2: "East Asia Indie Games Celebration - First Batch of Participants Announced!",
+        news_full_item_3: "Full content of news item 3. (Sample text, please modify as needed.)",
+        participating_publishers: "Participating Publishers",
+        contact_us: "Contact Us",
+        contact_description: "If you have any questions about the event, please contact our team for more information.",
+        contact_button: "Contact Us",
+        newsletter_title: "Game Sale Expo Newsletter",
+        newsletter_description: "Subscribe to our newsletter to receive the latest offers and event updates.",
+        subscribe: "Subscribe",
+        privacy: "Privacy",
+        terms: "Terms",
+        about: "About",
+        footer_contact: "Contact",
+        language_en: "EN",
+        language_zh: "中文",
+        language_ja: "日本語",
+        expand: "Expand",
+        collapse: "Collapse",
+        not_released: "Game Not Yet Released",
+        demo_open: "Demo Version Available!",
+        copyright: "© 2025 East Asia Indie Games Celebration. All rights reserved.",
+		organizer: "Organizer:"
+      },
+      zh: {
+        logo_text: "東亞獨立遊戲慶典",
+        home: "首頁",
+        news: "新聞",
+        deals: "特賣",
+        games: "全部遊戲",
+        contact: "聯絡",
+        browse_deals: "立即報名",
+        hero_title: "東亞獨立遊戲慶典 2025",
+        hero_date: "2025年8月5日至2025年8月19日",
+        hero_description: "我們誠摯邀請來自東亞各地（包含台灣、中國、日本、韓國、香港、澳門及其他東亞區域）的獨立遊戲開發團隊，共同參與這場盛大的線上遊戲特賣會，展現我們豐富多元的創意遊戲文化。",
+        featured_deals: "遊戲&特色優惠",
+        news_section: "新聞",
+        news_item: "東亞獨立遊戲慶典-報名開始!",
+        news_item2: "東亞獨立遊戲慶典-公布第一批參展名單",
+        news_full_item_1: "我們誠摯邀請來自東亞各地（包含台灣、中國、日本、韓國、香港、澳門及其他東亞區域）的獨立遊戲開發團隊，共同參與這場盛大的線上遊戲特賣會，展現我們豐富多元的創意遊戲文化。請於2025年4月4日前填寫遊戲資料。",
+        news_full_item_2: "東亞獨立遊戲慶典-公布第一批參展名單!",
+        news_full_item_3: "新聞項目 3 的完整內容。示例文本，請根據需求修改。",
+        participating_publishers: "參與廠商",
+        contact_us: "聯絡我們",
+        contact_description: "對於遊戲特賣博覽有疑問？請聯絡我們的團隊獲得更多資訊。",
+        contact_button: "聯絡我們",
+        newsletter_title: "遊戲特賣博覽電子報",
+        newsletter_description: "訂閱我們的電子報，獲得最新優惠和活動資訊。",
+        subscribe: "訂閱",
+        privacy: "隱私",
+        terms: "條款",
+        about: "關於",
+        footer_contact: "聯絡",
+        language_en: "EN",
+        language_zh: "中文",
+        language_ja: "日本語",
+        expand: "展開",
+        collapse: "收起",
+        not_released: "遊戲尚未推出",
+        demo_open: "試玩版開放中!",
+        copyright: "© 2025 東亞獨立遊戲慶典。版權所有。",
+		organizer: "舉辦單位:"
+      },
+      ja: {
+        logo_text: "東亞インディーゲームセレブレーション",
+        home: "ホーム",
+        news: "ニュース",
+        deals: "セール",
+        games: "ゲーム",
+        contact: "連絡先",
+        browse_deals: "今すぐ申し込む",
+        hero_title: "東亞インディーゲームセレブレーション 2025",
+        hero_date: "2025年8月5日〜2025年8月19日",
+        hero_description: "台湾、中国、日本、韓国、香港、マカオ、その他東亞地域のインディーゲーム開発チームの皆様を心よりご招待し、この盛大なオンラインゲームセールイベントで多彩なクリエイティブ文化を発信していただきます。",
+        featured_deals: "ゲーム＆特別オファー",
+        news_section: "ニュース",
+        news_item: "東亞インディーゲームセレブレーション－募集開始！",
+        news_item2: "東亞インディーゲームセレブレーション－第一陣の参加者発表",
+        news_full_item_1: "台湾、中国、日本、韓国、香港、マカオ、その他東亞地域のインディーゲーム開発チームの皆様を心よりご招待いたします。2025年4月4日までにゲーム情報を提出してください。",
+        news_full_item_2: "東亞インディーゲームセレブレーション－第一陣の参加者発表！",
+        news_full_item_3: "ニュース項目3の完全な内容。（サンプルテキスト、必要に応じて修正してください。）",
+        participating_publishers: "参加出版社",
+        contact_us: "お問い合わせ",
+        contact_description: "イベントに関するご質問は、ぜひ当チームまでお問い合わせください。",
+        contact_button: "お問い合わせ",
+        newsletter_title: "ゲームセールエキスポ ニュースレター",
+        newsletter_description: "最新のオファーとイベント情報を受け取るために、ニュースレターにご登録ください。",
+        subscribe: "購読",
+        privacy: "プライバシー",
+        terms: "利用規約",
+        about: "概要",
+        footer_contact: "お問い合わせ",
+        language_en: "EN",
+        language_zh: "中文",
+        language_ja: "日本語",
+        expand: "展開",
+        collapse: "折りたたむ",
+        not_released: "ゲーム未発売",
+        demo_open: "体験版公開中！",
+        copyright: "© 2025 東亞インディーゲームセレブレーション。全著作権所有。",
+		organizer: "主催者:"
+      }
+    };
+
+    let currentLanguage = "zh";
+    let featuredDealsData = [];
+    let currentShuffledDeals = [];
+
+    function updateTranslations() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const translated = translations[currentLanguage]?.[key];
+        if (!translated) return;
+        switch (el.tagName) {
+          case "TITLE":
+            document.title = translated;
+            break;
+          case "OPTION":
+            el.text = translated;
+            break;
+          case "INPUT":
+            el.placeholder = translated;
+            break;
+          default:
+            el.textContent = translated;
+            break;
+        }
+      });
+    }
+
+    function initFadeInAnimation() {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+    }
+
+    function shuffleArray(array) {
+      const copy = array.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function renderShuffledDeals(data) {
+      currentShuffledDeals = shuffleArray(data);
+      renderDeals(currentShuffledDeals);
+    }
+
+    function renderDeals(data) {
+      const container = document.getElementById("featured-deals-container");
+      container.innerHTML = "";
+
+      data.forEach(row => {
+        const title = row["title_" + currentLanguage] || row.title_en;
+        const price = parseFloat(row.price);
+        const tag = row.game_type;
+
+        // 檢查 CSV 中的 bargain_price 欄位，若有填值（自訂圖片 URL）就用它，否則拼湊 Steam 圖片網址
+        const customImageUrl = row.bargain_price && row.bargain_price.trim() !== ''
+          ? row.bargain_price.trim()
+          : null;
+        const match = row.steamLink.match(/\/app\/(\d+)/);
+        const defaultImageUrl = match
+          ? `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${match[1]}/header.jpg`
+          : `/placeholder.svg?height=300&width=400&text=${encodeURIComponent(title)}`;
+        const imageUrl = customImageUrl || defaultImageUrl;
+
+        const card = document.createElement("div");
+        card.className = "border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow fade-in";
+
+        const imgWrapper = document.createElement("div");
+        imgWrapper.className = "relative h-48";
+        const link = document.createElement("a");
+        link.href = row.steamLink;
+        link.target = "_blank";
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = title;
+        img.className = "object-cover absolute inset-0 w-full h-full zoom-image";
+        link.appendChild(img);
+        imgWrapper.appendChild(link);
+
+        card.appendChild(imgWrapper);
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "p-4";
+        const h3 = document.createElement("h3");
+        h3.className = "font-bold mb-1";
+        h3.textContent = title;
+        cardBody.appendChild(h3);
+
+        const infoDiv = document.createElement("div");
+        if (price === -1) {
+          infoDiv.className = "flex items-center justify-between mb-2";
+          infoDiv.textContent = tag;
+        }
+        cardBody.appendChild(infoDiv);
+        card.appendChild(cardBody);
+
+        container.appendChild(card);
+      });
+
+      initFadeInAnimation();
+    }
+
+    function loadDealsCSV() {
+      Papa.parse("deals.csv", {
+        download: true,
+        header: true,
+        complete: function (results) {
+          featuredDealsData = results.data;
+          renderShuffledDeals(featuredDealsData); // 初次隨機排序顯示
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateTranslations();
+      loadDealsCSV();
+      if (typeof loadPublishersCSV === "function") loadPublishersCSV();
+    });
+
+    document.getElementById("language-select").addEventListener("change", e => {
+      currentLanguage = e.target.value;
+      updateTranslations();
+      if (currentShuffledDeals.length) renderDeals(currentShuffledDeals);
+    });
+  </script>
+</body>
+</html>
