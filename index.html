@@ -450,7 +450,7 @@
         } else {
           imageUrl = `/placeholder.svg?height=300&width=400&text=${encodeURIComponent(title)}`;
         }
-		imageUrl = customImageUrl || defaultImageUrl;
+		imageUrl = customImageUrl || imageUrl;
 		
         // 建立卡片
         const card = document.createElement("div");
