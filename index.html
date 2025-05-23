@@ -165,6 +165,7 @@
         </div>
       </section>
 
+
       <!-- News 區塊 (展開後內容自動適應高度) -->
       <section id="news-section" class="py-12 bg-gray-50">
         <div class="container">
@@ -212,8 +213,36 @@
         </div>
       </section>
 
+	<!-- Hero Banner -->
+	<section class="deals-section py-12 bg-white">
+	  <div class="container py-8 md:py-16 relative z-10">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+		  
+		  <!-- Icons 區塊（多行排版，置中） -->
+		  <div class="flex flex-wrap justify-center gap-6 items-center">
+			<img src="gameExpo/Discord-Logo-Blurple.png" alt="Discord" class="h-12 max-w-[260px] object-contain" />
+			<img src="gameExpo/yt_logo_rgb_light.png" alt="YouTube" class="h-12 max-w-[280px] object-contain" />
+			<img src="gameExpo/X_logo-black.png" alt="X" class="h-12 max-w-[48px] object-contain" />
+		  </div>
+
+		  <!-- 說明文字 -->
+		  <div>
+			<h1 data-i18n="discord_title" class="text-4xl md:text-6xl font-bold text-black mb-4">
+			  一起玩吧！
+			</h1>
+			<p data-i18n="discord_description" class="text-gray-700 mb-8">
+			  不管你是玩家，還是開發者，或是主播...讓我們一起玩吧!
+			</p>
+		  </div>
+
+		</div>
+	  </div>
+	</section>
+
+
+
       <!-- Participating Publishers 區 (從 CSV 動態生成) -->
-      <section class="py-12 bg-white">
+      <section class="py-12 bg-gray-50">
         <div class="container">
           <h2 data-i18n="participating_publishers" class="text-2xl font-bold text-center mb-8 flex flex-col items-center">
             <span class="inline-block w-12 h-1 bg-orange-500 mb-2"></span>
@@ -225,8 +254,8 @@
         </div>
       </section>
 
-      <!-- Contact 與 Newsletter 區塊
-      <section id="contact-section" class="py-12 bg-gray-50">
+      <!-- Contact 與 Newsletter 區塊-->
+      <section id="contact-section" class="py-12 bg-white">
         <div class="container">
           <div class="max-w-2xl mx-auto text-center">
             <h2 data-i18n="contact_us" class="text-2xl font-bold mb-4 flex flex-col items-center">
@@ -236,14 +265,14 @@
             <p data-i18n="contact_description" class="text-gray-600 mb-8">
               Have questions about the Game Sale Expo? Contact our team for more information.
             </p>
-            <a href="mailto:filtergametw@gmail.com" 
+            <a href="mailto:eaigc25@gmail.com" 
                data-i18n="contact_button"
                class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-2 inline-block">
               CONTACT US
             </a>
           </div>
         </div>
-      </section> -->
+      </section> 
     </main>
 
     <!-- Footer -->
@@ -321,7 +350,9 @@
         not_released: "Game Not Yet Released",
         demo_open: "Demo Version Available!",
         copyright: "© 2025 East Asia Indie Games Celebration. All rights reserved.",
-		organizer: "Organizer:"
+		organizer: "Organizer:",
+		discord_title : "Let’s play together!",
+		discord_description : "Whether you're a player, a developer, or a streamer... let's all play together!"
       },
       zh: {
         logo_text: "東亞獨立遊戲慶典",
@@ -360,7 +391,9 @@
         not_released: "遊戲尚未推出",
         demo_open: "試玩版開放中!",
         copyright: "© 2025 東亞獨立遊戲慶典。版權所有。",
-		organizer: "舉辦單位:"
+		organizer: "舉辦單位:",
+		discord_title: "一起玩吧！",
+		discord_description : "不管你是玩家，還是開發者，或是主播...讓我們一起玩吧!"
       },
       ja: {
         logo_text: "東亞インディーゲームセレブレーション",
@@ -399,7 +432,9 @@
         not_released: "ゲーム未発売",
         demo_open: "体験版公開中！",
         copyright: "© 2025 東亞インディーゲームセレブレーション。全著作権所有。",
-		organizer: "主催者:"
+		organizer: "主催者:",
+		discord_title : "一緒に遊ぼう！",
+		discord_description : "プレイヤーでも、開発者でも、配信者でも…みんなで一緒に遊ぼう！"
       }
     };
 
