@@ -437,6 +437,12 @@
         // 解析 steamLink 中的 appId（格式例如 /app/440/ ）
         const match = row.steamLink.match(/\/app\/(\d+)/);
         let imageUrl = "";
+		
+		// 檢查 CSV 中的 bargain_price 欄位，若有填值（自訂圖片 URL）就用它，否則拼湊 Steam 圖片網址
+        const customImageUrl = row.bargain_price && row.bargain_price.trim() !== ''
+          ? row.bargain_price.trim()
+          : null;
+
         if (match) {
           const appId = match[1];
           // 使用新的圖片來源 URL
@@ -444,7 +450,8 @@
         } else {
           imageUrl = `/placeholder.svg?height=300&width=400&text=${encodeURIComponent(title)}`;
         }
-
+		imageUrl = customImageUrl || defaultImageUrl;
+		
         // 建立卡片
         const card = document.createElement("div");
         card.className = "border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow";
