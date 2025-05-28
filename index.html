@@ -549,7 +549,13 @@
         const imgWrapper = document.createElement("div");
         imgWrapper.className = "relative h-48";
         const link = document.createElement("a");
-        link.href = row.steamLink;
+		
+		//新增UTM
+		let steamUrl = new URL(row.steamLink);
+		steamUrl.searchParams.set("utm_source", "eaigc2025");
+		link.href = steamUrl.toString();
+
+     //   link.href = row.steamLink;
         link.target = "_blank";
         const img = document.createElement("img");
         img.src = imageUrl;
