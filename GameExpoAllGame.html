@@ -393,7 +393,7 @@
         const link = document.createElement("a");
 		
 		//新增UTM
-		let steamUrl = new URL(row.steamLink);
+		let steamUrl = new URL(row.steamLink, window.location.origin);
 		steamUrl.searchParams.set("utm_source", "eaigc2025");
 		link.href = steamUrl.toString();
 
