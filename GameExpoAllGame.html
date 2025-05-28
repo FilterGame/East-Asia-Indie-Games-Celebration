@@ -393,13 +393,23 @@
         const link = document.createElement("a");
 		
 		//新增UTM
-		let steamUrl = new URL(row.steamLink, window.location.origin);
-		steamUrl.searchParams.set("utm_source", "eaigc2025");
-		link.href = steamUrl.toString();
-
+		const rawLink = (row.steamLink || "").trim();
+		if (rawLink === "") {
+		  // 若沒有 steamLink，就不加連結
+		  // 你可以改成 link.href = "#" 或乾脆跳過 append
+		  link.removeAttribute("href");
+		} else {
+		  // 用 Steam 正式域名當 base
+		  // 這樣即使 rawLink="/app/440/" 或以 "app/440" 開頭都 OK
+		  const steamUrl = new URL(rawLink, "https://store.steampowered.com");
+		  // 再加上 UTM
+		  steamUrl.searchParams.set("utm_source", "eaigc2025");
+		  link.href = steamUrl.toString();
+		  link.target = "_blank";
+		}
 		
        // link.href = row.steamLink;
-        link.target = "_blank";
+       // link.target = "_blank";
         const img = document.createElement("img");
         img.src = imageUrl;
         img.alt = title;
