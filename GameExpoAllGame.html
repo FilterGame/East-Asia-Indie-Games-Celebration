@@ -360,6 +360,7 @@
     let currentLanguage = "zh";
     let featuredDealsData = [];
     let currentShuffledDeals = [];
+	const browserLang = navigator.language.toLowerCase();
 
 	if (browserLang.startsWith("zh")) {
 	  currentLanguage = browserLang === "zh-cn" || browserLang === "zh-hans" ? "zh-Hans" : "zh";
