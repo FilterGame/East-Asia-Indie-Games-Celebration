@@ -110,7 +110,8 @@
             <option value="zh" data-i18n="language_zh">中文</option>
             <option value="en" data-i18n="language_en">EN</option>
             <option value="ja" data-i18n="language_ja">日本語</option>
-		  <option value="ko" data-i18n="language_ko">한국어</option>
+		    <option value="ko" data-i18n="language_ko">한국어</option>
+		    <option value="zh-Hans" data-i18n="language_zh_hans">简体中文</option>
           </select>
         </div>
       </div>
@@ -410,6 +411,47 @@
 		discord_title: "一起玩吧！",
 		discord_description : "不管你是玩家，還是開發者，或是主播...讓我們一起玩吧!"
       },
+		zh-Hans: {
+		logo_text: "东亚独立游戏庆典",
+		home: "首页",
+		news: "新闻",
+		deals: "特卖",
+		games: "全部游戏",
+		contact: "联络",
+		browse_deals: "立即报名",
+		hero_title: "东亚独立游戏庆典 2025",
+		hero_date: "2025年8月5日至2025年8月19日",
+		hero_description: "我们诚挚邀请来自东亚各地（包含台湾、中国、日本、韩国、香港、澳门及其他东亚区域）的独立游戏开发团队，共同参与这场盛大的线上游戏特卖会，展现我们丰富多元的创意游戏文化。",
+		featured_deals: "游戏&特色优惠",
+		news_section: "新闻",
+		news_item: "东亚独立游戏庆典-报名开始!",
+		news_item2: "东亚独立游戏庆典-公布参展名单",
+		news_full_item_1: "我们诚挚邀请来自东亚各地（包含台湾、中国、日本、韩国、香港、澳门及其他东亚区域）的独立游戏开发团队，共同参与这场盛大的线上游戏特卖会，展现我们丰富多元的创意游戏文化。请于2025年4月4日前填写游戏资料。",
+		news_full_item_2: "东亚独立游戏庆典-公布第一批参展名单!",
+		news_full_item_3: "新闻项目 3 的完整内容。示例文本，请根据需求修改。",
+		participating_publishers: "参与厂商",
+		contact_us: "联络我们",
+		contact_description: "对于游戏特卖博览有疑问？请联络我们的团队获得更多资讯。",
+		contact_button: "联络我们",
+		newsletter_title: "游戏特卖博览电子报",
+		newsletter_description: "订阅我们的电子报，获得最新优惠和活动资讯。",
+		subscribe: "订阅",
+		privacy: "隐私",
+		terms: "条款",
+		about: "关于",
+		footer_contact: "联络",
+		language_en: "EN",
+		language_zh: "中文",
+		language_ja: "日本语",
+		expand: "展开",
+		collapse: "收起",
+		not_released: "游戏尚未推出",
+		demo_open: "试玩版开放中!",
+		copyright: "© 2025 东亚独立游戏庆典。版权所有。",
+		organizer: "举办单位:",
+		discord_title: "一起玩吧！",
+		discord_description : "不管你是玩家，还是开发者，或是主播...让我们一起玩吧!"
+		},
       ja: {
         logo_text: "東亞インディーゲームセレブレーション",
         home: "ホーム",
@@ -498,6 +540,21 @@
 
     // 預設語系
     let currentLanguage = "zh";
+	const supportedLanguages = ["zh", "zh-Hans", "en", "ja", "ko"];
+	const browserLang = navigator.language.toLowerCase();
+
+	if (browserLang.startsWith("zh")) {
+	  currentLanguage = browserLang === "zh-cn" || browserLang === "zh-hans" ? "zh-Hans" : "zh";
+	} else if (browserLang.startsWith("ja")) {
+	  currentLanguage = "ja";
+	} else if (browserLang.startsWith("ko")) {
+	  currentLanguage = "ko";
+	} else if (browserLang.startsWith("en")) {
+	  currentLanguage = "en";
+	} else {
+	  currentLanguage = "zh"; // fallback 預設為繁體中文
+	}
+
     // 儲存 Featured Deals 與 Publishers CSV 資料
     let featuredDealsData = [];
     let publishersData = [];
@@ -523,7 +580,7 @@
       for (let i = 0; i < 16; i++) {
         const idx = (currentCarouselIndex + i) % total;
         const row = data[idx];
-        const title = row["title_" + currentLanguage] || row.title_en;
+        const title = row["title_" + currentLanguage] || (currentLanguage === "zh-Hans" ? row["title_zh"] : row["title_en"]);
         const price = parseFloat(row.price);
 		const tag = row.game_type;
         const bargainPrice = parseFloat(row.bargain_price);
