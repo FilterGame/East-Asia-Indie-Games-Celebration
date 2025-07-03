@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const colors = ["bg-red-400", "bg-yellow-400", "bg-cyan-400", "bg-blue-500", "bg-green-500", "bg-purple-500", "bg-pink-500"];
             const color = colors[index % colors.length];
 
-            return { id, name, thumbnail, color, votes: 0 };
+            return { id, name, thumbnail, color, votes: 0 , steamLink: rowObject.steamLink };
         });
     }
 
