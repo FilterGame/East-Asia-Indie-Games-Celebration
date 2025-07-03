@@ -29,20 +29,35 @@
             100% { transform: rotate(360deg); }
         }
 		
-		  /* 讓父容器變相對定位，好放背景條 */
-		  .progress-wrapper {
-			  @apply relative overflow-hidden rounded-lg bg-gray-200 h-12; /* Tailwind 寫法 */
-		  }
+  /* 進度條外層 */
+  .progress-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;       /* = rounded-lg */
+      background: #e5e7eb;         /* = bg-gray-200 */
+      height: 48px;                /* = h-12 */
+  }
 
-		  /* 進度條本身（只負責顏色＋寬度） */
-		  .progress-fill {
-			  @apply absolute inset-0 transition-all duration-500 ease-in-out;
-		  }
+  /* 彩色進度條本體 */
+  .progress-fill {
+      position: absolute;
+      inset: 0;
+      transition: width 0.5s ease-in-out;
+  }
 
-		  /* 文字永遠橫向置中對齊，單行不換行 */
-		  .game-title {
-			  @apply absolute inset-0 flex items-center pl-4 whitespace-nowrap overflow-hidden text-ellipsis font-medium text-lg;
-		  }
+  /* 遊戲名稱 */
+  .game-title {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;          /* = pl-4 */
+      font-size: 1.125rem;         /* = text-lg */
+      font-weight: 500;            /* = font-medium */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
 
 		
     </style>
