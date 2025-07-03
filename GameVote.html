@@ -151,6 +151,38 @@ document.addEventListener('DOMContentLoaded', () => {
 		selected: "已選擇",
 		thank_you: "投票成功！感謝您的參與！"
 	  },
+	    zh-Hans: {
+    logo_text: "东亚独立游戏庆典",
+    home: "首页",
+    news: "新闻",
+    deals: "特卖",
+    games: "全部游戏",
+    contact: "联系",
+    title: "人气游戏投票",
+    title_info: "参与者可参加 SteamKey 抽奖！请务必使用正确的邮箱！",
+    site_title: "游戏投票网站",
+    email_label: "电子邮件（每个邮箱只能投一次）",
+    submit_vote: "提交投票",
+    select_games: "请选择 3 款游戏",
+    selected: "已选择",
+    thank_you: "投票成功！感谢您的参与！"
+  },
+  ko: {
+    logo_text: "동아시아 인디 게임 축제",
+    home: "홈",
+    news: "뉴스",
+    deals: "특가",
+    games: "전체 게임",
+    contact: "연락처",
+    title: "인기 게임 투표",
+    title_info: "참여자는 Steam 키 추첨에 참여할 수 있습니다! 올바른 이메일을 꼭 사용하세요!",
+    site_title: "게임 투표 사이트",
+    email_label: "이메일 (이메일당 1회 투표 가능)",
+    submit_vote: "투표 제출",
+    select_games: "게임 3개를 선택하세요",
+    selected: "선택됨",
+    thank_you: "투표가 성공적으로 완료되었습니다! 참여해 주셔서 감사합니다!"
+  },
 	  en: {
 		logo_text: "East Asia Indie Games Celebration",
         home: "Home",
@@ -189,13 +221,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	let currentLanguage = "zh";
 	const browserLang = navigator.language.toLowerCase();
 	if (browserLang.startsWith("zh")) {
-	  currentLanguage = "zh";
+	  currentLanguage = browserLang === "zh-cn" || browserLang === "zh-hans" ? "zh-Hans" : "zh";
 	} else if (browserLang.startsWith("ja")) {
 	  currentLanguage = "ja";
 	} else if (browserLang.startsWith("en")) {
 	  currentLanguage = "en";
 	}
-
+	} else if (browserLang.startsWith("ko")) {
+	  currentLanguage = "ko";
+	} 
+	else {
+	  currentLanguage = "zh"; // fallback 預設為繁體中文
+	}
+	
 	function updateTranslations() {
 	  document.querySelectorAll("[data-i18n]").forEach(el => {
 		const key = el.getAttribute("data-i18n");
