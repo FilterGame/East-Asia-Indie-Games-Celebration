@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const translations = {
 	  zh: {
-	          logo_text: "東亞獨立遊戲慶典",
+		logo_text: "東亞獨立遊戲慶典",
         home: "首頁",
         news: "新聞",
         deals: "特賣",
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		thank_you: "投票成功！感謝您的參與！"
 	  },
 	  en: {
-	          logo_text: "East Asia Indie Games Celebration",
+		logo_text: "East Asia Indie Games Celebration",
         home: "Home",
         news: "News",
         deals: "Deals",
@@ -317,7 +317,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					  <div class="progress-fill ${game.color}" style="width:${widthPercentage}%"></div>
 
 					  <!-- 遊戲名稱 -->
-					  <span class="game-title ${widthPercentage < 15 ? 'text-gray-800' : 'text-white'}">
+					  <span class="game-title ${widthPercentage < 15 ? 'text-gray-800' : 'text-white'}"
+						data-game-id="${game.id}">
 							${currentLanguage === "en" ? game.title_en : currentLanguage === "ja" ? game.title_ja : game.title_zh}
 					  </span>
 					</div>
@@ -373,20 +374,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-function updateGameTitles() {
-  document.querySelectorAll(".game-title").forEach(el => {
-    const id = parseInt(el.dataset.gameId);
-    const game = allGamesData.find(g => g.id === id);
-    if (!game) return;
+	function updateGameTitles() {
+	  document.querySelectorAll(".game-title").forEach(el => {
+		const id = parseInt(el.dataset.gameId);
+		const game = allGamesData.find(g => g.id === id);
+		if (!game) return;
 
-    const title = 
-      currentLanguage === "en" ? game.title_en :
-      currentLanguage === "ja" ? game.title_ja :
-      game.title_zh;
+		const title = 
+		  currentLanguage === "en" ? game.title_en :
+		  currentLanguage === "ja" ? game.title_ja :
+		  game.title_zh;
 
-    el.textContent = title;
-  });
-}
+		el.textContent = title;
+	  });
+	}
 
     /**
      * 處理表單提交事件
@@ -489,7 +490,6 @@ function updateGameTitles() {
       currentLanguage = e.target.value;
       updateTranslations();
       updateGameTitles();   // 單純更新遊戲名稱
-      if (currentShuffledDeals.length) renderDeals(currentShuffledDeals);
     });
 
     // 啟動應用程式
