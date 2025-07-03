@@ -28,6 +28,23 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+		
+		  /* 讓父容器變相對定位，好放背景條 */
+		  .progress-wrapper {
+			  @apply relative overflow-hidden rounded-lg bg-gray-200 h-12; /* Tailwind 寫法 */
+		  }
+
+		  /* 進度條本身（只負責顏色＋寬度） */
+		  .progress-fill {
+			  @apply absolute inset-0 transition-all duration-500 ease-in-out;
+		  }
+
+		  /* 文字永遠橫向置中對齊，單行不換行 */
+		  .game-title {
+			  @apply absolute inset-0 flex items-center pl-4 whitespace-nowrap overflow-hidden text-ellipsis font-medium text-lg;
+		  }
+
+		
     </style>
 </head>
 <body class="bg-gray-100">
@@ -153,11 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="flex-1 flex items-center">
-                    <div class="flex-1 max-w-md bg-gray-200 rounded-lg overflow-hidden">
-                        <div class="progress-bar ${game.color} text-white px-4 py-3 text-lg font-medium text-left" style="width: ${widthPercentage}%;">
-                           ${game.name}
-                        </div>
-                    </div>
+					<div class="flex-1 max-w-md progress-wrapper">
+					  <!-- 有色進度條 -->
+					  <div class="progress-fill ${game.color}" style="width:${widthPercentage}%"></div>
+
+					  <!-- 遊戲名稱 -->
+					  <span class="game-title ${widthPercentage < 15 ? 'text-gray-800' : 'text-white'}">
+						  ${game.name}
+					  </span>
+					</div>
                     <div class="ml-4 text-2xl font-bold text-gray-600 min-w-[60px] text-center">${game.votes}</div>
                 </div>
 
