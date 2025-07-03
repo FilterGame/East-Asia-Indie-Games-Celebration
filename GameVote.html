@@ -135,6 +135,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const translations = {
 	  zh: {
+	          logo_text: "東亞獨立遊戲慶典",
+        home: "首頁",
+        news: "新聞",
+        deals: "特賣",
+        games: "全部遊戲",
+        contact: "聯絡",
+
 	    title :"人氣遊戲投票",
 		title_info: "參加者可進行 SteamKey抽獎！記得使用正確email!",
 		site_title: "遊戲投票網站",
@@ -145,6 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		thank_you: "投票成功！感謝您的參與！"
 	  },
 	  en: {
+	          logo_text: "East Asia Indie Games Celebration",
+        home: "Home",
+        news: "News",
+        deals: "Deals",
+        games: "Games",
+        contact: "Contact",
+
 		title :"Popular Game Voting",
 		title_info: "Participants can join the Steam Key giveaway!Be sure to use the correct email address!",
 		site_title: "Game Voting Site",
@@ -155,6 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		thank_you: "Vote submitted! Thank you!"
 	  },
 	  ja: {
+		logo_text: "東亞インディーゲームセレブレーション",
+        home: "ホーム",
+        news: "ニュース",
+        deals: "セール",
+        games: "ゲーム",
+        contact: "連絡先",
 		title :"人気ゲーム投票",
 		title_info: "参加者はSteamキーの抽選に参加できます！正しいメールアドレスを忘れずに入力してくださいね！",
 		site_title: "ゲーム投票サイト",
@@ -230,6 +250,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // API ID 從 1 開始，對應到 CSV 的第一筆資料
             const id = index + 1;
+			
+			// 把所有語系標題取出
+			const title_zh = rowObject.title_zh || `遊戲 ${id}`;
+			const title_en = rowObject.title_en || title_zh;
+			const title_ja = rowObject.title_ja || title_zh;
+
+			
             const name = rowObject.title_zh || rowObject.title_en || `遊戲 ${id}`;
             
             // --- NEW IMAGE LOGIC ---
@@ -252,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const colors = ["bg-red-400", "bg-yellow-400", "bg-cyan-400", "bg-blue-500", "bg-green-500", "bg-purple-500", "bg-pink-500"];
             const color = colors[index % colors.length];
 
-            return { id, name, thumbnail, color, votes: 0 , steamLink: rowObject.steamLink };
+            return { id, name, title_zh, title_en, title_ja,thumbnail, color, votes: 0 , steamLink: rowObject.steamLink };
         });
     }
 
@@ -291,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					  <!-- 遊戲名稱 -->
 					  <span class="game-title ${widthPercentage < 15 ? 'text-gray-800' : 'text-white'}">
-						  ${game.name}
+							${currentLanguage === "en" ? game.title_en : currentLanguage === "ja" ? game.title_ja : game.title_zh}
 					  </span>
 					</div>
                     <div class="ml-4 text-2xl font-bold text-gray-600 min-w-[60px] text-center">${game.votes}</div>
@@ -346,6 +373,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+function updateGameTitles() {
+  document.querySelectorAll(".game-title").forEach(el => {
+    const id = parseInt(el.dataset.gameId);
+    const game = allGamesData.find(g => g.id === id);
+    if (!game) return;
+
+    const title = 
+      currentLanguage === "en" ? game.title_en :
+      currentLanguage === "ja" ? game.title_ja :
+      game.title_zh;
+
+    el.textContent = title;
+  });
+}
 
     /**
      * 處理表單提交事件
@@ -447,6 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("language-select").addEventListener("change", e => {
       currentLanguage = e.target.value;
       updateTranslations();
+      updateGameTitles();   // 單純更新遊戲名稱
       if (currentShuffledDeals.length) renderDeals(currentShuffledDeals);
     });
 
