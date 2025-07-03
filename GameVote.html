@@ -181,7 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
             gameElement.className = "flex items-center gap-4 p-2 hover:bg-gray-50 rounded-lg transition-colors";
             gameElement.innerHTML = `
                 <div class="flex-shrink-0">
-                    <img src="${game.thumbnail}" alt="${game.name}" width="120" height="80" class="rounded-lg object-cover h-20 w-30 bg-gray-200" onerror="this.onerror=null;this.src='/placeholder.svg?height=80&width=120';">
+<img 
+  src="${game.thumbnail}" 
+  alt="${game.name}" 
+  class="rounded-lg bg-gray-200 max-w-full max-h-20 object-contain"
+  style="width:auto; height:auto; max-height:80px;"
+  onerror="this.onerror=null;this.src='/placeholder.svg?height=80&width=120';">
                 </div>
 
                 <div class="flex-1 flex items-center">
