@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊戲投票網站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 自訂樣式，讓進度條有動畫效果 */
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        /* 讓提交按鈕在禁用時有更明顯的樣式 */
+        .submit-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        /* 簡易的載入中動畫 */
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="min-h-screen py-8">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">遊戲投票網站</h1>
+
+            <div id="main-card" class="p-6 bg-white shadow-lg rounded-lg">
+                <div id="game-list-container" class="space-y-4 mb-8">
+                    <div class="flex justify-center items-center py-10">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+
+                <form id="vote-form" class="space-y-4">
+                    <div>
+                        <label for="email-input" class="block text-sm font-medium text-gray-700 mb-2">
+                            電子郵件 (每個 Email 只能投一次)
+                        </label>
+                        <input id="email-input" type="email" placeholder="請輸入您的電子郵件" class="w-full p-3 text-lg border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+
+                    <div class="text-center">
+                        <button id="submit-button" type="submit" class="px-8 py-3 text-lg font-medium bg-gray-700 text-white rounded-md hover:bg-gray-800 transition-colors submit-button" disabled>
+                            請選擇 3 款遊戲
+                        </button>
+                    </div>
+                </form>
+
+                <div id="selection-summary" class="mt-4 p-3 bg-blue-50 rounded-lg hidden">
+                    <p class="text-sm text-blue-700"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ---------- CONFIGURATION ----------
+    const WORKER_URL = "https://game-vote.kkll7952.workers.dev"; // 您的 Cloudflare Worker URL
+    const CSV_PATH = "./deals.csv"; // CSV 檔案路徑
+
+    // ---------- STATE MANAGEMENT ----------
+    let selectedGames = []; // 儲存用戶選擇的遊戲 ID
+    let allGamesData = [];  // 儲存從 CSV 讀取的遊戲資料
+
+    // ---------- DOM ELEMENTS ----------
+    const gameListContainer = document.getElementById('game-list-container');
+    const voteForm = document.getElementById('vote-form');
+    const emailInput = document.getElementById('email-input');
+    const submitButton = document.getElementById('submit-button');
+    const selectionSummary = document.getElementById('selection-summary');
+
+    // ---------- HELPER FUNCTIONS ----------
+
+    /**
+     * 健壯的 CSV 解析器
+     * @param {string} text CSV 檔案的純文字內容
+     * @returns {Array<Object>} 解析後的物件陣列
+     */
+    function parseCSV(text) {
+        const rows = text.trim().split('\n');
+        // 取得標頭並去除多餘空格
+        const headers = rows.shift().split(',').map(h => h.trim());
+
+        return rows.map((row, index) => {
+            const values = row.split(',');
+            // 將每一行資料轉換為物件，方便用 key 取值
+            const rowObject = headers.reduce((obj, header, i) => {
+                obj[header] = values[i] ? values[i].trim().replace(/"/g, '') : '';
+                return obj;
+            }, {});
+
+            // API ID 從 1 開始，對應到 CSV 的第一筆資料
+            const id = index + 1;
+            const name = rowObject.title_zh || rowObject.title_en || `遊戲 ${id}`;
+            
+            // --- NEW IMAGE LOGIC ---
+            // 檢查 CSV 中的 bargain_price 欄位，若有填值（自訂圖片 URL）就用它
+            const customImageUrl = rowObject.bargain_price && rowObject.bargain_price.trim() !== ''
+                ? rowObject.bargain_price.trim()
+                : null;
+            
+            // 否則，從 steamLink 拼湊 Steam 圖片網址
+            const match = rowObject.steamLink.match(/\/app\/(\d+)/);
+            
+            const defaultImageUrl = match
+                ? `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${match[1]}/header.jpg`
+                : `/placeholder.svg?height=80&width=120&text=${encodeURIComponent(name)}`;
+            
+            const thumbnail = customImageUrl || defaultImageUrl;
+            // --- END NEW IMAGE LOGIC ---
+
+            // 給每個遊戲一個隨機的顏色
+            const colors = ["bg-red-400", "bg-yellow-400", "bg-cyan-400", "bg-blue-500", "bg-green-500", "bg-purple-500", "bg-pink-500"];
+            const color = colors[index % colors.length];
+
+            return { id, name, thumbnail, color, votes: 0 };
+        });
+    }
+
+    /**
+     * 渲染所有遊戲列表到畫面上
+     * @param {Array<Object>} games - 包含票數的遊戲資料
+     */
+    function renderGames(games) {
+        // 找出最高票數，用於計算進度條百分比
+        const maxVotes = Math.max(...games.map(g => g.votes), 0);
+
+        gameListContainer.innerHTML = ''; // 清空現有內容
+
+        games.forEach(game => {
+            const widthPercentage = maxVotes > 0 ? (game.votes / maxVotes) * 100 : 0;
+            const isChecked = selectedGames.includes(game.id);
+
+            const gameElement = document.createElement('div');
+            gameElement.className = "flex items-center gap-4 p-2 hover:bg-gray-50 rounded-lg transition-colors";
+            gameElement.innerHTML = `
+                <div class="flex-shrink-0">
+                    <img src="${game.thumbnail}" alt="${game.name}" width="120" height="80" class="rounded-lg object-cover h-20 w-30 bg-gray-200" onerror="this.onerror=null;this.src='/placeholder.svg?height=80&width=120';">
+                </div>
+
+                <div class="flex-1 flex items-center">
+                    <div class="flex-1 max-w-md bg-gray-200 rounded-lg overflow-hidden">
+                        <div class="progress-bar ${game.color} text-white px-4 py-3 text-lg font-medium text-left" style="width: ${widthPercentage}%;">
+                           ${game.name}
+                        </div>
+                    </div>
+                    <div class="ml-4 text-2xl font-bold text-gray-600 min-w-[60px] text-center">${game.votes}</div>
+                </div>
+
+                <div class="flex-shrink-0">
+                    <input type="checkbox" id="game-${game.id}" data-game-id="${game.id}" class="w-6 h-6 border-2 border-gray-400 rounded text-blue-600 focus:ring-blue-500" ${isChecked ? 'checked' : ''}>
+                </div>
+            `;
+            gameListContainer.appendChild(gameElement);
+        });
+    }
+
+    /**
+     * 更新 "已選擇遊戲" 的提示訊息和提交按鈕的狀態
+     */
+    function updateSelectionUI() {
+        const count = selectedGames.length;
+        if (count > 0) {
+            selectionSummary.classList.remove('hidden');
+            selectionSummary.querySelector('p').textContent = `已選擇 ${count} 款遊戲進行投票。 (需選滿 3 款)`;
+        } else {
+            selectionSummary.classList.add('hidden');
+        }
+
+        if (count === 3) {
+            submitButton.disabled = false;
+            submitButton.textContent = "送出投票";
+        } else {
+            submitButton.disabled = true;
+            submitButton.textContent = `請選擇 3 款遊戲 (${count}/3)`;
+        }
+    }
+
+    // ---------- EVENT HANDLERS ----------
+
+    /**
+     * 處理遊戲 checkbox 的點擊事件
+     * @param {Event} e 點擊事件物件
+     */
+    function handleGameSelect(e) {
+        if (e.target.type === 'checkbox') {
+            const gameId = parseInt(e.target.dataset.gameId);
+            if (e.target.checked) {
+                if (!selectedGames.includes(gameId)) {
+                    selectedGames.push(gameId);
+                }
+            } else {
+                selectedGames = selectedGames.filter(id => id !== gameId);
+            }
+            updateSelectionUI();
+        }
+    }
+
+    /**
+     * 處理表單提交事件
+     * @param {Event} e 提交事件物件
+     */
+    async function handleFormSubmit(e) {
+        e.preventDefault(); // 防止表單預設的頁面重整行為
+        const email = emailInput.value.trim();
+
+        if (selectedGames.length !== 3) {
+            alert("錯誤：請務必選擇 3 款遊戲！");
+            return;
+        }
+
+        if (!email) {
+            alert("錯誤：請輸入您的電子郵件！");
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "投票中...";
+
+        try {
+            const response = await fetch(`${WORKER_URL}/vote`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                // 後端 API 預期 selections 是字串陣列
+                body: JSON.stringify({
+                    email: email,
+                    selections: selectedGames.map(id => String(id))
+                }),
+            });
+
+            if (response.ok) {
+                alert("投票成功！感謝您的參與！");
+                // 投票成功後，重設表單並刷新票數
+                selectedGames = [];
+                emailInput.value = '';
+                await initializeApp(); // 重新載入所有資料並渲染
+            } else {
+                // 處理後端回傳的錯誤訊息
+                const errorMessage = await response.text();
+                alert(`投票失敗：${errorMessage}`);
+            }
+        } catch (error) {
+            console.error("投票請求失敗:", error);
+            alert("投票失敗：發生網路錯誤，請稍後再試。");
+        } finally {
+            // 無論成功失敗，都恢復按鈕狀態
+            updateSelectionUI();
+        }
+    }
+
+
+    // ---------- INITIALIZATION ----------
+    /**
+     * 初始化應用程式：讀取資料並渲染畫面
+     */
+    async function initializeApp() {
+        try {
+            // 1. 同時發送請求讀取 CSV 和票數
+            const [csvResponse, countsResponse] = await Promise.all([
+                fetch(CSV_PATH),
+                fetch(`${WORKER_URL}/counts`)
+            ]);
+
+            if (!csvResponse.ok) throw new Error(`無法載入遊戲資料檔案 (deals.csv)`);
+            if (!countsResponse.ok) throw new Error(`無法從 API 獲取票數`);
+
+            const csvText = await csvResponse.text();
+            const countsData = await countsResponse.json();
+
+            // 2. 解析 CSV 資料
+            allGamesData = parseCSV(csvText);
+
+            // 3. 將 API 票數合併到遊戲資料中
+            const gamesWithVotes = allGamesData.map(game => ({
+                ...game,
+                votes: countsData[game.id.toString()] || 0
+            }));
+            
+            // 4. 渲染畫面
+            renderGames(gamesWithVotes);
+            updateSelectionUI(); // 初始更新一次按鈕狀態
+
+        } catch (error) {
+            console.error("初始化失敗:", error);
+            gameListContainer.innerHTML = `<p class="text-center text-red-500 font-bold">資料載入失敗：${error.message}</p>`;
+        }
+    }
+
+    // 綁定事件監聽器
+    gameListContainer.addEventListener('change', handleGameSelect);
+    voteForm.addEventListener('submit', handleFormSubmit);
+
+    // 啟動應用程式
+    initializeApp();
+});
+</script>
+
+</body>
+</html>
