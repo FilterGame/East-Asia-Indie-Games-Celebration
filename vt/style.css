@@ -80,16 +80,22 @@ body {
 }
 
 .channel-avatar {
-    width: 2rem; /* w-8 */
-    height: 2rem; /* h-8 */
-    background-color: #dbeafe; /* bg-blue-100 */
+    width: 2.5rem; /* w-10 */
+    height: 2.5rem; /* h-10 */
     border-radius: 9999px; /* rounded-full */
+    
+    /* 針對圖片的樣式 */
+    object-fit: cover; /* 確保圖片填滿容器不變形 */
+
+    /* 針對 fallback (文字頭像) 的樣式 */
+    background-color: #dbeafe; /* bg-blue-100 */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.875rem; /* text-sm */
+    font-size: 1.25rem; /* 稍微放大文字以適應新尺寸 */
     font-weight: 500; /* font-medium */
     color: #2563eb; /* text-blue-600 */
+    flex-shrink: 0; /* 防止頭像被壓縮 */
 }
 
 .channel-name {

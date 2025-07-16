@@ -3,37 +3,42 @@
     "id": 1,
     "channelName": "Devilith Violustre",
     "channelUrl": "https://www.youtube.com/@devilithviolustre",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/7HVvBlLfSQhgi0TtOcup18_WEoh27xHnxRnMTMiBt2s1M5x8ixIwXsTW8nONjFonRLJqVRDqSw=s160-c-k-c0x00ffffff-no-rj",
     "characterImage": "img/Devilith.png",
     "characterImageHover": "img/Devilith02.png",
-    "characterImageSize": { "width": 200, "height": 300 },
+    "characterImageSize": { "width": 230, "height": 450 },
     "videoThumbnail": "https://i.ytimg.com/vi/wAfOCkA9kzs/hqdefault.jpg",
     "videoUrl": "https://www.youtube.com/watch?v=wAfOCkA9kzs",
     "videoTitle": "【ゲーム】Arcade Galaxy中文參加型🚗沒有駕照也要賽車🚗🚗",
     "uploadTime": "2025/6/16",
     "tags": ["Arcade Galaxy", "遊戲"],
-    "hoverMessages": ["辛苦了！", "現在測試中で、先下載測試版一起玩吧！", "De寶辛苦了！", "黛比辛苦了❤️"]
+    "hoverMessages": ["辛苦了！", "黛比！", "De寶辛苦了！", "黛比辛苦了❤️"]
   },
 
   {
     "id": 2,
     "channelName": "うさ耳帽子のるいかちゃん",
     "channelUrl": "https://www.youtube.com/@UsamimiHat",
+	"channelAvatarUrl": "https://yt3.googleusercontent.com/-v2FLecG1HXj6_5av_J6aZqv0krKwHLAOTxfIdo9OlMY1gsMH43rtwEeRQBf2SGPeEULADEg=s160-c-k-c0x00ffffff-no-rj",
     "characterImage": "img/02_01.png",
-    "characterImageSize": { "width": 200, "height": 300 },
+    "characterImageHover": "img/02_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
     "videoThumbnail": "https://i.ytimg.com/vi/TrQPCpq4ock/hqdefault.jpg",
     "videoUrl": "https://www.youtube.com/watch?v=TrQPCpq4ock",
     "videoTitle": "あつまれ！Vネタ動画祭り２０２４！！！！",
     "uploadTime": "2024/12/27",
     "tags": ["雜談", "遊戲"],
-	"hoverMessages": [
+	"hoverMessages": ["🚗🚗🚗🚗🚗🚗" ,"❤️❤️"
     ]
   },
   {
     "id": 3,
     "channelName": "らると-Ralt ch-",
     "channelUrl": "https://www.youtube.com/@Ralt2905",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/-0N00IwHGGSVaMQ7HvEFg5xjPcfefkLJ6O2jkQyZQ5hJLamrM6JSMLm2zFO1Cz5D89y3lUCteA=s160-c-k-c0x00ffffff-no-rj",
     "characterImage": "img/03_01.png",
-    "characterImageSize": { "width": 200, "height": 300 },
+    "characterImageHover": "img/03_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
     "videoThumbnail": "https://i.ytimg.com/vi/YFu3cGdYWU4/hqdefault.jpg",
     "videoUrl": "https://www.youtube.com/watch?v=YFu3cGdYWU4",
     "videoTitle": "台風はおかえりくださいませー【 動画編集の妖怪作業部屋 79日目】",
@@ -44,17 +49,22 @@
       "体はVRoidで自分で錬成したもの"
     ]
   },
-  {
+ {
     "id": 4,
-    "channelName": "桃可可 Ch.~モモココ~",
-    "channelUrl": "https://www.youtube.com/@momokoko",
-    "characterImage": "https://via.placeholder.com/200x300",
-    "characterImageSize": { "width": 200, "height": 300 },
-    "videoThumbnail": "https://via.placeholder.com/200x120",
-    "videoUrl": "https://www.youtube.com/watch?v=example4",
-    "videoTitle": "【MARIO KART WORLD】語音聲聲平安台...",
-    "uploadTime": "9 分鐘前收播",
-    "tags": ["雜談", "遊戲"],
-    "hoverMessages": ["晚安～明天見！", "今天的直播很開心", "謝謝大家的陪伴"]
+    "channelName": "天井姫美",
+    "channelUrl": "https://www.youtube.com/@AmaiKibi",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/ovJDPKbkslPT_SOna3AtFh7JX0yF2lgyV6YcpPoRw8PaEtKXn7oAXXsJeY4lrbAwgCcJCha_qmY=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/04_01.png",
+    "characterImageHover": "img/04_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/orGDoWe8iE8/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=orGDoWe8iE8",
+    "videoTitle": "【Mine Craft】洞窟マイクラ配信",
+    "uploadTime": "2025/6/8",
+    "tags": ["おはようVtuber️ ", "遊戲"],
+    "hoverMessages": [
+      "皆様こんばんは、天井姫美です",
+      "今日は鉱石取りに行きます！"
+    ]
   }
 ]

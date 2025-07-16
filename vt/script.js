@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((youtubersData) => {
             if (!listContainer) return;
-            
             listContainer.innerHTML = "";
-            
             youtubersData.forEach((data) => {
                 const card = createYoutuberCard(data);
                 listContainer.appendChild(card);
@@ -21,10 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     
+    // -- 修改後的 createYoutuberCard 函式 --
     function createYoutuberCard(data) {
         const card = document.createElement("div");
         card.className = "youtuber-card";
         card.dataset.id = data.id;
+
+        // 條件式生成頭像 HTML
+        const avatarHtml = data.channelAvatarUrl
+            ? `<img src="${data.channelAvatarUrl}" alt="${data.channelName} avatar" class="channel-avatar">`
+            : `<div class="channel-avatar">${data.channelName.charAt(0)}</div>`;
 
         card.innerHTML = `
             <div class="character-image-container">
@@ -39,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="content-area">
                 <div class="channel-info">
-                    <div class="channel-avatar">${data.channelName.charAt(0)}</div>
+                    ${avatarHtml} <!-- 使用上面生成的頭像 HTML -->
                     <a href="${data.channelUrl}" target="_blank" rel="noopener noreferrer" class="channel-name">
                         ${data.channelName}
                     </a>
@@ -70,14 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return card;
     }
 
-    // -- 修改後的滑鼠移入事件處理 --
+    // handleMouseEnter 和 handleMouseLeave 函式保持不變...
     function handleMouseEnter(card, data) {
-        // 氣泡邏輯 (保持不變)
         const cardId = card.dataset.id;
         if (data.hoverMessages && data.hoverMessages.length > 0) {
-            if (timeoutRefs[cardId]) {
-                timeoutRefs[cardId].forEach(clearTimeout);
-            }
+            if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
             timeoutRefs[cardId] = [];
             const cardRect = card.getBoundingClientRect();
             const bubbles = data.hoverMessages.map((message, index) => {
@@ -91,40 +92,27 @@ document.addEventListener("DOMContentLoaded", () => {
             timeoutRefs[cardId].push(fadeInTimeout, fadeOutTimeout, cleanupTimeout);
         }
 
-        // -- 新增的圖片切換與動畫邏輯 --
         const imageElement = card.querySelector('.character-image');
         if (imageElement && data.characterImageHover) {
-            // 儲存原始圖片路徑
             imageElement.dataset.originalSrc = imageElement.src;
-            // 更換為懸停圖片
             imageElement.src = data.characterImageHover;
-            // 添加跳躍動畫 class
             imageElement.classList.add('hover-jump');
         }
     }
 
-    // -- 修改後的滑鼠移出事件處理 --
     function handleMouseLeave(card) {
-        // 氣泡邏輯 (保持不變)
         const cardId = card.dataset.id;
         const bubbles = card.querySelectorAll(".floating-bubble");
         bubbles.forEach(bubble => bubble.classList.remove("visible"));
-        if (timeoutRefs[cardId]) {
-            timeoutRefs[cardId].forEach(clearTimeout);
-        }
+        if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
         timeoutRefs[cardId] = [];
         const cleanupTimeout = setTimeout(() => bubbles.forEach(b => b.remove()), 1000);
         timeoutRefs[cardId].push(cleanupTimeout);
 
-        // -- 新增的圖片還原與動畫移除邏輯 --
         const imageElement = card.querySelector('.character-image');
-        // 檢查是否有儲存的原始圖片路徑
         if (imageElement && imageElement.dataset.originalSrc) {
-            // 還原為原始圖片
             imageElement.src = imageElement.dataset.originalSrc;
-            // 移除跳躍動畫 class
             imageElement.classList.remove('hover-jump');
-            // 移除儲存的屬性，保持 DOM 乾淨
             imageElement.removeAttribute('data-original-src');
         }
     }
