@@ -1,182 +1,97 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const scrollerContainer = document.getElementById("scroller-container");
-    let bubbleTimeoutRefs = {};
+    const listContainer = document.getElementById("youtuber-list-container");
+    let timeoutRefs = {}; 
 
-    async function initializeScrollers() {
-        try {
-            const response = await fetch("data.json");
-            const scrollerRowsData = await response.json();
-
-            if (!scrollerContainer) return;
-            scrollerContainer.innerHTML = "";
-
-            scrollerRowsData.forEach(rowData => {
-                const scrollerRow = createScrollerRow(rowData);
-                scrollerContainer.appendChild(scrollerRow);
+    fetch("data.json")
+        .then((response) => response.json())
+        .then((youtubersData) => {
+            if (!listContainer) return;
+            listContainer.innerHTML = "";
+            youtubersData.forEach((data) => {
+                const card = createYoutuberCard(data);
+                listContainer.appendChild(card);
             });
-
-        } catch (error) {
-            console.error("無法載入或處理資料:", error);
-            if (scrollerContainer) {
-                scrollerContainer.innerHTML = "<p>資料載入失敗。</p>";
+        })
+        .catch((error) => {
+            console.error("無法載入 YouTuber 資料:", error);
+            if (listContainer) {
+                listContainer.innerHTML = "<p>資料載入失敗。</p>";
             }
-        }
-    }
-
-    function createScrollerRow(rowData) {
-        const settings = rowData.settings;
-        const cards = rowData.cards;
-        const scrollerRow = document.createElement("div");
-        scrollerRow.className = "scroller-row";
-        const scrollerInner = document.createElement("div");
-        scrollerInner.className = "scroller-inner";
-        scrollerInner.style.animationDuration = settings.speed || "60s";
-        scrollerInner.classList.add(settings.direction === 'right' ? 'scroll-right' : 'scroll-left');
-
-        cards.forEach(cardData => {
-            const cardElement = createYoutuberCard(cardData);
-            scrollerInner.appendChild(cardElement);
         });
-
-        cards.forEach(cardData => {
-            const cardElement = createYoutuberCard(cardData);
-            cardElement.setAttribute("aria-hidden", "true");
-            scrollerInner.appendChild(cardElement);
-        });
-
-        scrollerRow.appendChild(scrollerInner);
-        return scrollerRow;
-    }
-
-    // --- 全新重寫的 createYoutuberCard 函式 (不使用 innerHTML) ---
+    
+    // -- 修改後的 createYoutuberCard 函式 --
     function createYoutuberCard(data) {
-        // 主卡片
         const card = document.createElement("div");
         card.className = "youtuber-card";
         card.dataset.id = data.id;
 
-        // --- 左側角色圖片區 ---
-        const charImageContainer = document.createElement("div");
-        charImageContainer.className = "character-image-container";
-        const charLink = document.createElement("a");
-        charLink.href = data.channelUrl;
-        charLink.target = "_blank";
-        charLink.rel = "noopener noreferrer";
-        const charImg = document.createElement("img");
-        charImg.src = data.characterImage || 'https://via.placeholder.com/200x300';
-        charImg.alt = `${data.channelName} character`;
-        charImg.className = "character-image";
-        charImg.style.width = `${data.characterImageSize.width}px`;
-        charImg.style.height = `${data.characterImageSize.height}px`;
-        charLink.appendChild(charImg);
-        charImageContainer.appendChild(charLink);
+        // 條件式生成頭像 HTML
+        const avatarHtml = data.channelAvatarUrl
+            ? `<img src="${data.channelAvatarUrl}" alt="${data.channelName} avatar" class="channel-avatar">`
+            : `<div class="channel-avatar">${data.channelName.charAt(0)}</div>`;
 
-        // --- 右側內容區 ---
-        const contentArea = document.createElement("div");
-        contentArea.className = "content-area";
-
-        // 頻道資訊
-        const channelInfo = document.createElement("div");
-        channelInfo.className = "channel-info";
-        // 頻道頭像 (條件式)
-        if (data.channelAvatarUrl) {
-            const avatarImg = document.createElement("img");
-            avatarImg.src = data.channelAvatarUrl;
-            avatarImg.alt = `${data.channelName} avatar`;
-            avatarImg.className = "channel-avatar";
-            channelInfo.appendChild(avatarImg);
-        } else {
-            const avatarDiv = document.createElement("div");
-            avatarDiv.className = "channel-avatar";
-            avatarDiv.textContent = data.channelName.charAt(0);
-            channelInfo.appendChild(avatarDiv);
-        }
-        const channelNameLink = document.createElement("a");
-        channelNameLink.href = data.channelUrl;
-        channelNameLink.target = "_blank";
-        channelNameLink.rel = "noopener noreferrer";
-        channelNameLink.className = "channel-name";
-        channelNameLink.textContent = data.channelName;
-        channelInfo.appendChild(channelNameLink);
-        contentArea.appendChild(channelInfo);
-
-        // 標籤容器
-        const tagsContainer = document.createElement("div");
-        tagsContainer.className = "tags-container";
-        data.tags.forEach(tagText => {
-            const tagSpan = document.createElement("span");
-            tagSpan.className = "tag";
-            tagSpan.textContent = tagText;
-            tagsContainer.appendChild(tagSpan);
-        });
-        contentArea.appendChild(tagsContainer);
-
-        // 影片連結區塊
-        const videoLink = document.createElement("a");
-        videoLink.href = data.videoUrl;
-        videoLink.target = "_blank";
-        videoLink.rel = "noopener noreferrer";
-        videoLink.className = "video-link";
-        const videoGroup = document.createElement("div");
-        videoGroup.className = "group";
+        card.innerHTML = `
+            <div class="character-image-container">
+                <a href="${data.channelUrl}" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="${data.characterImage || 'https://via.placeholder.com/200x300'}"
+                        alt="${data.channelName} character"
+                        class="character-image"
+                        style="width: ${data.characterImageSize.width}px; height: ${data.characterImageSize.height}px;"
+                    />
+                </a>
+            </div>
+            <div class="content-area">
+                <div class="channel-info">
+                    ${avatarHtml} <!-- 使用上面生成的頭像 HTML -->
+                    <a href="${data.channelUrl}" target="_blank" rel="noopener noreferrer" class="channel-name">
+                        ${data.channelName}
+                    </a>
+                </div>
+                <div class="tags-container">
+                    ${data.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+                </div>
+                <a href="${data.videoUrl}" target="_blank" rel="noopener noreferrer" class="video-link">
+                    <div class="group">
+                        <div class="video-thumbnail-container">
+                            <img
+                                src="${data.videoThumbnail || 'https://via.placeholder.com/200x120'}"
+                                alt="Video thumbnail"
+                                class="video-thumbnail"
+                            />
+                            <div class="video-overlay">二次播</div>
+                        </div>
+                        <h3 class="video-title">${data.videoTitle}</h3>
+                        <p class="upload-time">${data.uploadTime}</p>
+                    </div>
+                </a>
+            </div>
+        `;
         
-        // 影片縮圖
-        const thumbnailContainer = document.createElement("div");
-        thumbnailContainer.className = "video-thumbnail-container";
-        const thumbnailImg = document.createElement("img");
-        thumbnailImg.src = data.videoThumbnail || 'https://via.placeholder.com/200x120';
-        thumbnailImg.alt = "Video thumbnail";
-        thumbnailImg.className = "video-thumbnail";
-        const overlayDiv = document.createElement("div");
-        overlayDiv.className = "video-overlay";
-        overlayDiv.textContent = "二次播";
-        thumbnailContainer.appendChild(thumbnailImg);
-        thumbnailContainer.appendChild(overlayDiv);
-        videoGroup.appendChild(thumbnailContainer);
-
-        // 影片標題
-        const videoTitle = document.createElement("h3");
-        videoTitle.className = "video-title";
-        videoTitle.textContent = data.videoTitle;
-        videoGroup.appendChild(videoTitle);
-
-        // 上傳時間
-        const uploadTime = document.createElement("p");
-        uploadTime.className = "upload-time";
-        uploadTime.textContent = data.uploadTime;
-        videoGroup.appendChild(uploadTime);
-
-        videoLink.appendChild(videoGroup);
-        contentArea.appendChild(videoLink);
-
-        // --- 組合所有區塊 ---
-        card.appendChild(charImageContainer);
-        card.appendChild(contentArea);
-
-        // 綁定事件
         card.addEventListener("mouseenter", () => handleMouseEnter(card, data));
         card.addEventListener("mouseleave", () => handleMouseLeave(card));
 
         return card;
     }
 
-    // --- 以下的互動邏輯保持不變 ---
+    // handleMouseEnter 和 handleMouseLeave 函式保持不變...
     function handleMouseEnter(card, data) {
-        const cardId = `bubble-${card.dataset.id}`;
+        const cardId = card.dataset.id;
         if (data.hoverMessages && data.hoverMessages.length > 0) {
-            if (bubbleTimeoutRefs[cardId]) bubbleTimeoutRefs[cardId].forEach(clearTimeout);
-            bubbleTimeoutRefs[cardId] = [];
+            if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
+            timeoutRefs[cardId] = [];
             const cardRect = card.getBoundingClientRect();
             const bubbles = data.hoverMessages.map((message, index) => {
-                const bubble = createFloatingBubble(message, card, cardRect, index);
-                document.body.appendChild(bubble);
+                const bubble = createFloatingBubble(message, cardRect, index);
+                card.appendChild(bubble);
                 return bubble;
             });
             const fadeInTimeout = setTimeout(() => bubbles.forEach(b => b.classList.add("visible")), 100);
             const fadeOutTimeout = setTimeout(() => bubbles.forEach(b => b.classList.remove("visible")), 2100);
             const cleanupTimeout = setTimeout(() => bubbles.forEach(b => b.remove()), 3100);
-            bubbleTimeoutRefs[cardId].push(fadeInTimeout, fadeOutTimeout, cleanupTimeout);
+            timeoutRefs[cardId].push(fadeInTimeout, fadeOutTimeout, cleanupTimeout);
         }
+
         const imageElement = card.querySelector('.character-image');
         if (imageElement && data.characterImageHover) {
             imageElement.dataset.originalSrc = imageElement.src;
@@ -184,14 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
             imageElement.classList.add('hover-jump');
         }
     }
+
     function handleMouseLeave(card) {
-        const cardId = `bubble-${card.dataset.id}`;
-        document.body.querySelectorAll(`.floating-bubble[data-parent-id="${cardId}"]`).forEach(bubble => bubble.classList.remove("visible"));
-        if (bubbleTimeoutRefs[cardId]) bubbleTimeoutRefs[cardId].forEach(clearTimeout);
-        bubbleTimeoutRefs[cardId] = [];
-        setTimeout(() => {
-            document.body.querySelectorAll(`.floating-bubble[data-parent-id="${cardId}"]`).forEach(b => b.remove());
-        }, 1000);
+        const cardId = card.dataset.id;
+        const bubbles = card.querySelectorAll(".floating-bubble");
+        bubbles.forEach(bubble => bubble.classList.remove("visible"));
+        if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
+        timeoutRefs[cardId] = [];
+        const cleanupTimeout = setTimeout(() => bubbles.forEach(b => b.remove()), 1000);
+        timeoutRefs[cardId].push(cleanupTimeout);
+
         const imageElement = card.querySelector('.character-image');
         if (imageElement && imageElement.dataset.originalSrc) {
             imageElement.src = imageElement.dataset.originalSrc;
@@ -199,31 +116,27 @@ document.addEventListener("DOMContentLoaded", () => {
             imageElement.removeAttribute('data-original-src');
         }
     }
-    function createFloatingBubble(text, parentCard, cardRect, index) {
+    
+    function createFloatingBubble(text, cardRect, index) {
         const bubble = document.createElement("div");
         bubble.className = "floating-bubble";
-        bubble.dataset.parentId = `bubble-${parentCard.dataset.id}`;
-        const bubbleX = cardRect.left + window.scrollX;
-        const bubbleY = cardRect.top + window.scrollY;
-        const position = generateRandomPosition({ width: cardRect.width, height: cardRect.height }, index);
-        bubble.style.left = `${bubbleX + position.x}px`;
-        bubble.style.top = `${bubbleY + position.y}px`;
-        const bubbleContent = document.createElement("div");
-        bubbleContent.className = "bubble-content";
-        bubbleContent.textContent = text;
-        bubble.appendChild(bubbleContent);
+        const position = generateRandomPosition(cardRect, index);
+        bubble.style.left = `${position.x}px`;
+        bubble.style.top = `${position.y}px`;
+        bubble.innerHTML = `<div class="bubble-content">${text}</div>`;
         return bubble;
     }
-    function generateRandomPosition(cardDimensions, index) {
+
+    function generateRandomPosition(cardRect, index) {
+        const cardWidth = cardRect.width;
+        const cardHeight = cardRect.height;
         const positions = [
-            { x: Math.random() * cardDimensions.width, y: -20 - Math.random() * 20 },
-            { x: -50 - Math.random() * 40, y: Math.random() * cardDimensions.height },
-            { x: cardDimensions.width + 50 + Math.random() * 40, y: Math.random() * cardDimensions.height },
+            { x: Math.random() * cardWidth, y: -20 - Math.random() * 20 },
+            { x: -50 - Math.random() * 40, y: Math.random() * cardHeight },
+            { x: cardWidth + 50 + Math.random() * 40, y: Math.random() * cardHeight },
             { x: -40 - Math.random() * 30, y: -20 - Math.random() * 30 },
-            { x: cardDimensions.width + 40 + Math.random() * 30, y: -20 - Math.random() * 30 },
+            { x: cardWidth + 40 + Math.random() * 30, y: -20 - Math.random() * 30 },
         ];
         return positions[index % positions.length];
     }
-
-    initializeScrollers();
 });

@@ -1,12 +1,5 @@
 [
   {
-    "rowId": "vtuber-row-1",
-    "settings": {
-      "direction": "left",
-      "speed": "60s"
-    },
-    "cards": [
-  {
     "id": 1,
     "channelName": "Devilith Violustre",
     "channelUrl": "https://www.youtube.com/@devilithviolustre",
@@ -72,43 +65,6 @@
     "hoverMessages": [
       "皆様こんばんは、天井姫美です",
       "今日は鉱石取りに行きます！"
-    ]
-  }
-]
-  },
-  {
-    "rowId": "vtuber-row-2",
-    "settings": {
-      "direction": "right",
-      "speed": "45s"
-    },
-    "cards": [
-      {
-        "id": 4,
-        "channelName": "卡片 4 (向右)",
-        "channelUrl": "#",
-        "characterImage": "https://via.placeholder.com/200x300/E6E6FA",
-        "characterImageSize": { "width": 200, "height": 300 },
-        "videoThumbnail": "https://via.placeholder.com/200x120",
-        "videoUrl": "#",
-        "videoTitle": "【第二排】向右移動的卡片 4",
-        "uploadTime": "剛剛",
-        "tags": ["展示", "向右"],
-        "hoverMessages": ["向右邊走！"]
-      },
-      {
-        "id": 5,
-        "channelName": "卡片 5 (向右)",
-        "channelUrl": "#",
-        "characterImage": "https://via.placeholder.com/200x300/DDA0DD",
-        "characterImageSize": { "width": 200, "height": 300 },
-        "videoThumbnail": "https://via.placeholder.com/200x120",
-        "videoUrl": "#",
-        "videoTitle": "【第二排】向右移動的卡片 5",
-        "uploadTime": "5 分鐘前",
-        "tags": ["速度較快"],
-        "hoverMessages": ["速度很快喔"]
-      }
     ]
   }
 ]
