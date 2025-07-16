@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "channelName": "桃可可 Ch.~モモココ~",
+    "channelUrl": "https://www.youtube.com/@momokoko",
+    "characterImage": "https://via.placeholder.com/200x300/87CEEB/000000?text=Original",
+    "characterImageHover": "https://via.placeholder.com/200x300/FFB6C1/000000?text=Hover!",
+    "characterImageSize": { "width": 200, "height": 300 },
+    "videoThumbnail": "https://via.placeholder.com/200x120",
+    "videoUrl": "https://www.youtube.com/watch?v=example1",
+    "videoTitle": "【MARIO KART WORLD】語音聲聲平安台...",
+    "uploadTime": "9 分鐘前收播",
+    "tags": ["雜談", "遊戲"],
+    "hoverMessages": ["今天也要一起玩遊戲喔～", "大家好！我是桃可可", "記得按讚訂閱！", "謝謝大家的支持❤️"]
+  },
+
+  {
+    "id": 2,
+    "channelName": "桃可可 Ch.~モモココ~",
+    "channelUrl": "https://www.youtube.com/@momokoko",
+    "characterImage": "https://via.placeholder.com/200x300",
+    "characterImageSize": { "width": 200, "height": 300 },
+    "videoThumbnail": "https://via.placeholder.com/200x120",
+    "videoUrl": "https://www.youtube.com/watch?v=example2",
+    "videoTitle": "【MARIO KART WORLD】語音聲聲平安台...",
+    "uploadTime": "9 分鐘前收播",
+    "tags": ["雜談", "遊戲"],
+    "hoverMessages": ["一起來賽車吧！", "這次一定要贏！", "大家猜猜我會第幾名？"]
+  },
+  {
+    "id": 3,
+    "channelName": "桃可可 Ch.~モモココ~",
+    "channelUrl": "https://www.youtube.com/@momokoko",
+    "characterImage": "https://via.placeholder.com/200x300",
+    "characterImageSize": { "width": 200, "height": 300 },
+    "videoThumbnail": "https://via.placeholder.com/200x120",
+    "videoUrl": "https://www.youtube.com/watch?v=example3",
+    "videoTitle": "【MARIO KART WORLD】語音聲聲平安台...",
+    "uploadTime": "9 分鐘前收播",
+    "tags": ["雜談", "遊戲"],
+    "hoverMessages": [
+      "今天心情超好的！",
+      "有什麼想聊的嗎？",
+      "感謝大家陪伴～",
+      "下次想玩什麼遊戲呢？",
+      "記得開小鈴鐺喔！"
+    ]
+  },
+  {
+    "id": 4,
+    "channelName": "桃可可 Ch.~モモココ~",
+    "channelUrl": "https://www.youtube.com/@momokoko",
+    "characterImage": "https://via.placeholder.com/200x300",
+    "characterImageSize": { "width": 200, "height": 300 },
+    "videoThumbnail": "https://via.placeholder.com/200x120",
+    "videoUrl": "https://www.youtube.com/watch?v=example4",
+    "videoTitle": "【MARIO KART WORLD】語音聲聲平安台...",
+    "uploadTime": "9 分鐘前收播",
+    "tags": ["雜談", "遊戲"],
+    "hoverMessages": ["晚安～明天見！", "今天的直播很開心", "謝謝大家的陪伴"]
+  }
+]
