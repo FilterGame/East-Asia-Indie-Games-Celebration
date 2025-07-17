@@ -441,19 +441,20 @@
 
 
 
-      <!-- Participating Publishers 區 (從 CSV 動態生成) -->
+      <!-- YouTuber List Section -->
       <section class="py-12 bg-gray-50">
         <div class="container">
-          <h2 data-i18n="participating_publishers" class="text-2xl font-bold text-center mb-8 flex flex-col items-center">
+          <h2 class="text-2xl font-bold text-center mb-8 flex flex-col items-center">
             <span class="inline-block w-12 h-1 bg-orange-500 mb-2"></span>
             合作Youtuber列表
           </h2>
-          <div class="container" id="vt-container">
+          <div id="vt-container">
+            <!-- YouTuber cards will be injected here -->
           </div>
         </div>
       </section>
 
-      <!-- Participating Publishers 區 (從 CSV 動態生成) -->
+      <!-- Participating Publishers Section -->
       <section class="py-12 bg-gray-50">
         <div class="container">
           <h2 data-i18n="participating_publishers" class="text-2xl font-bold text-center mb-8 flex flex-col items-center">
@@ -461,12 +462,12 @@
             PARTICIPATING PUBLISHERS
           </h2>
           <div id="publishers-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            <!-- 廠商項目由 JS 動態注入 -->
+            <!-- Publisher items are injected here by JS -->
           </div>
         </div>
       </section>
 
-      <!-- Contact 與 Newsletter 區塊-->
+      <!-- Contact Section -->
       <section id="contact-section" class="py-12 bg-white">
         <div class="container">
           <div class="max-w-2xl mx-auto text-center">
@@ -501,490 +502,457 @@
             <a href="https://www.arcadegalaxy.space/" target="_blank" class="text-gray-400 hover:text-white transition-colors">第九商行</a>
             <a href="https://filtergame.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors">FilterGame</a>
           </div>
-		<!--  
-          <div class="flex items-center gap-4">
-            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-              <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">X</div>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-              <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">f</div>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-              <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">in</div>
-            </a>
-          </div>
-		  -->
-		  
         </div>
         <div data-i18n="copyright" class="text-center text-gray-500 text-sm mt-8">© 2025 East Asia Indie Games Celebration. All rights reserved.</div>
       </div>
     </footer>
   </div>
 
-  <!-- JavaScript：多國語系、Featured Deals 輪播、News 展開、以及 Publishers CSV 生成 -->
+  <!-- JavaScript: All-in-one script -->
   <script>
-    // 多國語系字串定義（以中文版為基礎，新翻譯覆蓋原英文/日文）
-    const translations = {
-      en: {
-        logo_text: "East Asia Indie Games Celebration",
-        home: "Home",
-        news: "News",
-        deals: "Deals",
-        games: "Games",
-        contact: "Contact",
-        browse_deals: "Register Now",
-        hero_title: "East Asia Indie Games Celebration 2025",
-        hero_date: "August 5, 2025 - August 19, 2025",
-        hero_description: "We sincerely invite independent game development teams from across East Asia (including Taiwan, China, Japan, Korea, Hong Kong, Macau, and other East Asian regions) to participate in this grand online game sale event and showcase our rich and diverse creative game culture.",
-        featured_deals: "Games & Special Offers",
-        news_section: "News",
-        news_item: "East Asia Indie Games Celebration - Registration Open!",
-        news_item2: "East Asia Indie Game Celebration - Exhibitor List Announcement",
-        news_full_item_1: "We sincerely invite independent game development teams from across East Asia (including Taiwan, China, Japan, Korea, Hong Kong, Macau, and other East Asian regions) to participate in this grand online game sale event. Please submit your game details by April 4, 2025 (GMT+8) for initial approval.",
-        news_full_item_2: "East Asia Indie Games Celebration - First Batch of Participants Announced!",
-        news_full_item_3: "Full content of news item 3. (Sample text, please modify as needed.)",
-        participating_publishers: "Participating Publishers",
-        contact_us: "Contact Us",
-        contact_description: "If you have any questions about the event, please contact our team for more information.",
-        contact_button: "Contact Us",
-        newsletter_title: "Game Sale Expo Newsletter",
-        newsletter_description: "Subscribe to our newsletter to receive the latest offers and event updates.",
-        subscribe: "Subscribe",
-        privacy: "Privacy",
-        terms: "Terms",
-        about: "About",
-        footer_contact: "Contact",
-        language_en: "EN",
-        language_zh: "中文",
-        language_ja: "日本語",
-        expand: "Expand",
-        collapse: "Collapse",
-        not_released: "Game Not Yet Released",
-        demo_open: "Demo Version Available!",
-        copyright: "© 2025 East Asia Indie Games Celebration. All rights reserved.",
-		organizer: "Organizer:",
-		discord_title : "Let’s play together!",
-		discord_description : "Whether you're a player, a developer, or a streamer... let's all play together!",
-		Popularity : "Popularity poll + Giveaway event"
-      },
-      zh: {
-        logo_text: "東亞獨立遊戲慶典",
-        home: "首頁",
-        news: "新聞",
-        deals: "特賣",
-        games: "全部遊戲",
-        contact: "聯絡",
-        browse_deals: "立即報名",
-        hero_title: "東亞獨立遊戲慶典 2025",
-        hero_date: "2025年8月5日至2025年8月19日",
-        hero_description: "我們誠摯邀請來自東亞各地（包含台灣、中國、日本、韓國、香港、澳門及其他東亞區域）的獨立遊戲開發團隊，共同參與這場盛大的線上遊戲特賣會，展現我們豐富多元的創意遊戲文化。",
-        featured_deals: "遊戲&特色優惠",
-        news_section: "新聞",
-        news_item: "東亞獨立遊戲慶典-報名開始!",
-        news_item2: "東亞獨立遊戲慶典-公布參展名單",
-        news_full_item_1: "我們誠摯邀請來自東亞各地（包含台灣、中國、日本、韓國、香港、澳門及其他東亞區域）的獨立遊戲開發團隊，共同參與這場盛大的線上遊戲特賣會，展現我們豐富多元的創意遊戲文化。請於2025年4月4日前填寫遊戲資料。",
-        news_full_item_2: "東亞獨立遊戲慶典-公布第一批參展名單!",
-        news_full_item_3: "新聞項目 3 的完整內容。示例文本，請根據需求修改。",
-        participating_publishers: "參與廠商",
-        contact_us: "聯絡我們",
-        contact_description: "對於遊戲特賣博覽有疑問？請聯絡我們的團隊獲得更多資訊。",
-        contact_button: "聯絡我們",
-        newsletter_title: "遊戲特賣博覽電子報",
-        newsletter_description: "訂閱我們的電子報，獲得最新優惠和活動資訊。",
-        subscribe: "訂閱",
-        privacy: "隱私",
-        terms: "條款",
-        about: "關於",
-        footer_contact: "聯絡",
-        language_en: "EN",
-        language_zh: "中文",
-        language_ja: "日本語",
-        expand: "展開",
-        collapse: "收起",
-        not_released: "遊戲尚未推出",
-        demo_open: "試玩版開放中!",
-        copyright: "© 2025 東亞獨立遊戲慶典。版權所有。",
-		organizer: "舉辦單位:",
-		discord_title: "一起玩吧！",
-		discord_description : "不管你是玩家，還是開發者，或是主播...讓我們一起玩吧!",
-		Popularity : "人氣投票+抽獎活動"
-      },
-		"zh-Hans": {
-		logo_text: "东亚独立游戏庆典",
-		home: "首页",
-		news: "新闻",
-		deals: "特卖",
-		games: "全部游戏",
-		contact: "联络",
-		browse_deals: "立即报名",
-		hero_title: "东亚独立游戏庆典 2025",
-		hero_date: "2025年8月5日至2025年8月19日",
-		hero_description: "我们诚挚邀请来自东亚各地（包含台湾、中国、日本、韩国、香港、澳门及其他东亚区域）的独立游戏开发团队，共同参与这场盛大的线上游戏特卖会，展现我们丰富多元的创意游戏文化。",
-		featured_deals: "游戏&特色优惠",
-		news_section: "新闻",
-		news_item: "东亚独立游戏庆典-报名开始!",
-		news_item2: "东亚独立游戏庆典-公布参展名单",
-		news_full_item_1: "我们诚挚邀请来自东亚各地（包含台湾、中国、日本、韩国、香港、澳门及其他东亚区域）的独立游戏开发团队，共同参与这场盛大的线上游戏特卖会，展现我们丰富多元的创意游戏文化。请于2025年4月4日前填写游戏资料。",
-		news_full_item_2: "东亚独立游戏庆典-公布第一批参展名单!",
-		news_full_item_3: "新闻项目 3 的完整内容。示例文本，请根据需求修改。",
-		participating_publishers: "参与厂商",
-		contact_us: "联络我们",
-		contact_description: "对于游戏特卖博览有疑问？请联络我们的团队获得更多资讯。",
-		contact_button: "联络我们",
-		newsletter_title: "游戏特卖博览电子报",
-		newsletter_description: "订阅我们的电子报，获得最新优惠和活动资讯。",
-		subscribe: "订阅",
-		privacy: "隐私",
-		terms: "条款",
-		about: "关于",
-		footer_contact: "联络",
-		language_en: "EN",
-		language_zh: "中文",
-		language_ja: "日本语",
-		expand: "展开",
-		collapse: "收起",
-		not_released: "游戏尚未推出",
-		demo_open: "试玩版开放中!",
-		copyright: "© 2025 东亚独立游戏庆典。版权所有。",
-		organizer: "举办单位:",
-		discord_title: "一起玩吧！",
-		discord_description : "不管你是玩家，还是开发者，或是主播...让我们一起玩吧!",
-		Popularity : "人气投票+抽奖活动"
-		},
-      ja: {
-        logo_text: "東亞インディーゲームセレブレーション",
-        home: "ホーム",
-        news: "ニュース",
-        deals: "セール",
-        games: "ゲーム",
-        contact: "連絡先",
-        browse_deals: "今すぐ申し込む",
-        hero_title: "東亞インディーゲームセレブレーション 2025",
-        hero_date: "2025年8月5日〜2025年8月19日",
-        hero_description: "台湾、中国、日本、韓国、香港、マカオ、その他東亞地域のインディーゲーム開発チームの皆様を心よりご招待し、この盛大なオンラインゲームセールイベントで多彩なクリエイティブ文化を発信していただきます。",
-        featured_deals: "ゲーム＆特別オファー",
-        news_section: "ニュース",
-        news_item: "東亞インディーゲームセレブレーション－募集開始！",
-        news_item2: "동아시아 인디게임 페스티벌 - 참가자 명단 발표",
-        news_full_item_1: "台湾、中国、日本、韓国、香港、マカオ、その他東亞地域のインディーゲーム開発チームの皆様を心よりご招待いたします。2025年4月4日までにゲーム情報を提出してください。",
-        news_full_item_2: "東亞インディーゲームセレブレーション－第一陣の参加者発表！",
-        news_full_item_3: "ニュース項目3の完全な内容。（サンプルテキスト、必要に応じて修正してください。）",
-        participating_publishers: "参加出版社",
-        contact_us: "お問い合わせ",
-        contact_description: "イベントに関するご質問は、ぜひ当チームまでお問い合わせください。",
-        contact_button: "お問い合わせ",
-        newsletter_title: "ゲームセールエキスポ ニュースレター",
-        newsletter_description: "最新のオファーとイベント情報を受け取るために、ニュースレターにご登録ください。",
-        subscribe: "購読",
-        privacy: "プライバシー",
-        terms: "利用規約",
-        about: "概要",
-        footer_contact: "お問い合わせ",
-        language_en: "EN",
-        language_zh: "中文",
-        language_ja: "日本語",
-        expand: "展開",
-        collapse: "折りたたむ",
-        not_released: "ゲーム未発売",
-        demo_open: "体験版公開中！",
-        copyright: "© 2025 東亞インディーゲームセレブレーション。全著作権所有。",
-		organizer: "主催者:",
-		discord_title : "一緒に遊ぼう！",
-		discord_description : "プレイヤーでも、開発者でも、配信者でも…みんなで一緒に遊ぼう！",
-		Popularity : "人気投票＋抽選イベント"
-      },
-       ko: {
-        logo_text: "동아시아 인디 게임 축제",
-        home: "홈",
-        news: "뉴스",
-        deals: "특가",
-        games: "전체 게임",
-        contact: "연락",
-        browse_deals: "지금 등록하기",
-        hero_title: "동아시아 인디 게임 축제 2025",
-        hero_date: "2025년 8월 5일 ~ 2025년 8월 19일",
-        hero_description: "대만, 중국, 일본, 한국, 홍콩, 마카오 및 기타 동아시아 지역의 인디 게임 개발팀을 진심으로 초대하여, 이 거대한 온라인 게임 세일 행사에 참여하고 풍부하고 다양한 창의적인 게임 문화를 선보입니다.",
-        featured_deals: "게임 & 특별 혜택",
-        news_section: "뉴스",
-        news_item: "동아시아 인디 게임 축제 - 등록 시작!",
-        news_item2: "동아시아 인디 게임 축제 - 1차 참가자 명단 공개",
-        news_full_item_1: "대만, 중국, 일본, 한국, 홍콩, 마카오 및 기타 동아시아 지역의 인디 게임 개발팀을 진심으로 초대하여, 이 거대한 온라인 게임 세일 행사에 참여하고 풍부하고 다양한 창의적인 게임 문화를 선보입니다. 2025년 4월 4일 전까지 게임 정보를 작성해 주세요.",
-        news_full_item_2: "동아시아 인디 게임 축제 - 1차 참가자 명단 공개!",
-        news_full_item_3: "뉴스 항목 3의 전체 내용. 샘플 텍스트이며 필요에 따라 수정해 주세요.",
-        participating_publishers: "참여 퍼블리셔",
-        contact_us: "문의하기",
-        contact_description: "게임 세일 박람회에 대해 궁금하신 점이 있으시면 저희 팀에 문의해 주세요.",
-        contact_button: "문의하기",
-        newsletter_title: "게임 세일 박람회 뉴스레터",
-        newsletter_description: "최신 혜택과 이벤트 정보를 받아보려면 뉴스레터를 구독해 주세요.",
-        subscribe: "구독",
-        privacy: "개인정보",
-        terms: "이용 약관",
-        about: "소개",
-        footer_contact: "연락",
-        language_en: "EN",
-        language_zh: "中文",
-        language_ja: "日本語",
-        language_ko: "한국어",
-        expand: "펼치기",
-        collapse: "접기",
-        not_released: "게임 출시 전",
-        demo_open: "체험판 공개 중!",
-        copyright: "© 2025 동아시아 인디 게임 축제. 모든 권리 보유.",
-		organizer: "주최:",
-		discord_title: "함께 놀아요!",
-		discord_description : "당신이 플레이어든, 개발자든, 스트리머든... 함께 놀아요!",
-		Popularity : "인기 투표＋추첨 이벤트"
-      }
-
-    };
-
-    // 預設語系
-    let currentLanguage = "zh";
-	const supportedLanguages = ["zh", "zh-Hans", "en", "ja", "ko"];
-	const browserLang = navigator.language.toLowerCase();
-
-	if (browserLang.startsWith("zh")) {
-	  currentLanguage = browserLang === "zh-cn" || browserLang === "zh-hans" ? "zh-Hans" : "zh";
-	} else if (browserLang.startsWith("ja")) {
-	  currentLanguage = "ja";
-	} else if (browserLang.startsWith("ko")) {
-	  currentLanguage = "ko";
-	} else if (browserLang.startsWith("en")) {
-	  currentLanguage = "en";
-	} else {
-	  currentLanguage = "zh"; // fallback 預設為繁體中文
-	}
-
-    // 儲存 Featured Deals 與 Publishers CSV 資料
-    let featuredDealsData = [];
-    let publishersData = [];
-    // 輪播目前起始索引（一次顯示 8 個）
-    let currentCarouselIndex = 0;
-
-    // 更新所有 data-i18n 文字
-    function updateTranslations() {
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (translations[currentLanguage][key]) {
-          el.textContent = translations[currentLanguage][key];
-        }
-      });
-      updateNewsToggleButtons();
-    }
-
-    // 產生 Featured Deals 卡片，一次顯示 8 個
-    function generateFeaturedDeals(data) {
-      const container = document.getElementById("featured-deals-container");
-      container.innerHTML = "";
-      const total = data.length;
-      for (let i = 0; i < 16; i++) {
-        const idx = (currentCarouselIndex + i) % total;
-        const row = data[idx];
-        const title = row["title_" + currentLanguage] || (currentLanguage === "zh-Hans" ? row["title_zh"] : row["title_en"]);
-        const price = parseFloat(row.price);
-		const tag = row.game_type;
-        const bargainPrice = parseFloat(row.bargain_price);
-        // 解析 steamLink 中的 appId（格式例如 /app/440/ ）
-        const match = row.steamLink.match(/\/app\/(\d+)/);
-        let imageUrl = "";
-		
-		// 檢查 CSV 中的 bargain_price 欄位，若有填值（自訂圖片 URL）就用它，否則拼湊 Steam 圖片網址
-        const customImageUrl = row.bargain_price && row.bargain_price.trim() !== ''
-          ? row.bargain_price.trim()
-          : null;
-
-        if (match) {
-          const appId = match[1];
-          // 使用新的圖片來源 URL
-          imageUrl = `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${appId}/header.jpg`;
-        } else {
-          imageUrl = `/placeholder.svg?height=300&width=400&text=${encodeURIComponent(title)}`;
-        }
-		imageUrl = customImageUrl || imageUrl;
-		
-        // 建立卡片
-        const card = document.createElement("div");
-        card.className = "border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow";
-
-        const imgWrapper = document.createElement("div");
-        imgWrapper.className = "relative h-48";
-        const link = document.createElement("a");
-		
-		//新增UTM
-		let steamUrl = new URL(row.steamLink);
-		steamUrl.searchParams.set("utm_source", "eaigc2025");
-		link.href = steamUrl.toString();
-
-     //   link.href = row.steamLink;
-        link.target = "_blank";
-        const img = document.createElement("img");
-        img.src = imageUrl;
-        img.alt = title;
-        // 加入 zoom-image 類別以達成放大效果
-        img.className = "object-cover absolute inset-0 w-full h-full zoom-image";
-        link.appendChild(img);
-        imgWrapper.appendChild(link);
-        // 僅當原價與特價不相同且非特殊狀態時顯示折扣標籤
-      //  if (price !== bargainPrice && price !== -1 && bargainPrice !== -1 && price !== -2 && bargainPrice !== -2) {
-      //    const discount = Math.round((1 - bargainPrice / price) * 100);
-      //    const discountTag = document.createElement("div");
-      //    discountTag.className = "absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded font-bold";
-      //    discountTag.textContent = "-" + discount + "%";
-      //    imgWrapper.appendChild(discountTag);
-      //  }
-        card.appendChild(imgWrapper);
-
-        // 遊戲資訊區
-        const cardBody = document.createElement("div");
-        cardBody.className = "p-4";
-        const h3 = document.createElement("h3");
-        h3.className = "font-bold mb-1";
-        h3.textContent = title;
-        cardBody.appendChild(h3);
-
-        const infoDiv = document.createElement("div");
-        infoDiv.className = "flex items-center justify-between mb-2";
-
-		if (price === -1 )
-		{
-		    const infoDiv = document.createElement("div");
-			infoDiv.className = "flex items-center justify-between mb-2";
-			infoDiv.textContent = tag;
-		}
-
-
-        cardBody.appendChild(infoDiv);
-        card.appendChild(cardBody);
-        container.appendChild(card);
-      }
-    }
-
-    // 讀取 deals.csv 並生成 Featured Deals 輪播
-    function loadDealsCSV() {
-      Papa.parse("deals.csv", {
-        download: true,
-        header: true,
-        complete: function(results) {
-          featuredDealsData = results.data;
-          generateFeaturedDeals(featuredDealsData);
-        }
-      });
-    }
-
-    // Publisher CSV 生成：讀取 publishers.csv（欄位：logo, link）
-	  function generatePublishers(data) {
-		const container = document.getElementById("publishers-container");
-		container.innerHTML = "";
-
-		data.forEach(row => {
-		  // 外層 a 標籤改為 flex-col 以垂直排列
-		  const a = document.createElement("a");
-		  a.href = row.link;
-		  a.target = "_blank";
-		  a.className = "flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow";
-
-		  // Logo 圖片
-		  const img = document.createElement("img");
-		  img.src = `logos/${row.logo}`;
-		  img.alt = row.name;
-		  img.width = 120;
-		  img.height = 80;
-		  img.className = "object-contain";
-		  a.appendChild(img);
-
-		  // 在圖片下方加入 name 文字，並設 data-i18n
-		  const nameEl = document.createElement("div");
-		  nameEl.textContent = row.name;
-		  nameEl.setAttribute("data-i18n", row.name);
-		  nameEl.className = "mt-2 text-center font-medium";
-		  a.appendChild(nameEl);
-
-		  container.appendChild(a);
-		});
-	  }
-	
-	function loadPublishersCSV() {
-	  Papa.parse("publishers.csv", {
-		download: true,
-		header: true,
-		skipEmptyLines: true,
-		transformHeader: header => header.trim(), // 自動去除 header 的空白
-		complete: function(results) {
-		  publishersData = results.data;
-		  generatePublishers(publishersData);
-		}
-	  });
-	}
-
-    // 輪播按鈕事件（以 8 個一組）
-    document.getElementById("next-deals").addEventListener("click", () => {
-      if (featuredDealsData.length) {
-        currentCarouselIndex = (currentCarouselIndex + 16) % featuredDealsData.length;
-        generateFeaturedDeals(featuredDealsData);
-      }
-    });
-    document.getElementById("prev-deals").addEventListener("click", () => {
-      if (featuredDealsData.length) {
-        currentCarouselIndex = (currentCarouselIndex - 16 + featuredDealsData.length) % featuredDealsData.length;
-        generateFeaturedDeals(featuredDealsData);
-      }
-    });
-
-    // News 區塊：切換展開／收起完整內容（讓內容容器自適應高度）
-    function updateNewsToggleButtons() {
-      document.querySelectorAll(".news-toggle-btn").forEach(btn => {
-        const fullContent = btn.closest("div.bg-white").querySelector(".news-full-content");
-        if (fullContent && !fullContent.classList.contains("hidden")) {
-          btn.innerHTML = `<span>${translations[currentLanguage].collapse}</span>`;
-        } else {
-          btn.innerHTML = `<span>${translations[currentLanguage].expand}</span>`;
-        }
-      });
-    }
-    document.querySelectorAll(".news-toggle-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const fullContent = btn.closest("div.bg-white").querySelector(".news-full-content");
-        if (fullContent) {
-          fullContent.classList.toggle("hidden");
-          updateNewsToggleButtons();
-        }
-      });
-    });
-
-    // 初始載入：更新翻譯、讀取 CSV
     document.addEventListener("DOMContentLoaded", () => {
-      updateTranslations();
-      loadDealsCSV();
-      loadPublishersCSV();
-    });
+        // --- Start of Translations and Main Page Logic ---
+        const translations = {
+            en: {
+                logo_text: "East Asia Indie Games Celebration",
+                home: "Home",
+                news: "News",
+                deals: "Deals",
+                games: "Games",
+                contact: "Contact",
+                browse_deals: "Register Now",
+                hero_title: "East Asia Indie Games Celebration 2025",
+                hero_date: "August 5, 2025 - August 19, 2025",
+                hero_description: "We sincerely invite independent game development teams from across East Asia (including Taiwan, China, Japan, Korea, Hong Kong, Macau, and other East Asian regions) to participate in this grand online game sale event and showcase our rich and diverse creative game culture.",
+                featured_deals: "Games & Special Offers",
+                news_section: "News",
+                news_item: "East Asia Indie Games Celebration - Registration Open!",
+                news_item2: "East Asia Indie Game Celebration - Exhibitor List Announcement",
+                news_full_item_1: "We sincerely invite independent game development teams from across East Asia (including Taiwan, China, Japan, Korea, Hong Kong, Macau, and other East Asian regions) to participate in this grand online game sale event. Please submit your game details by April 4, 2025 (GMT+8) for initial approval.",
+                news_full_item_2: "East Asia Indie Games Celebration - First Batch of Participants Announced!",
+                participating_publishers: "Participating Publishers",
+                contact_us: "Contact Us",
+                contact_description: "If you have any questions about the event, please contact our team for more information.",
+                contact_button: "Contact Us",
+                expand: "Expand",
+                collapse: "Collapse",
+                copyright: "© 2025 East Asia Indie Games Celebration. All rights reserved.",
+                organizer: "Organizer:",
+                discord_title: "Let’s play together!",
+                discord_description: "Whether you're a player, a developer, or a streamer... let's all play together!",
+                Popularity: "Popularity poll + Giveaway event"
+            },
+            zh: {
+                logo_text: "東亞獨立遊戲慶典",
+                home: "首頁",
+                news: "新聞",
+                deals: "特賣",
+                games: "全部遊戲",
+                contact: "聯絡",
+                browse_deals: "立即報名",
+                hero_title: "東亞獨立遊戲慶典 2025",
+                hero_date: "2025年8月5日至2025年8月19日",
+                hero_description: "我們誠摯邀請來自東亞各地（包含台灣、中國、日本、韓國、香港、澳門及其他東亞區域）的獨立遊戲開發團隊，共同參與這場盛大的線上遊戲特賣會，展現我們豐富多元的創意遊戲文化。",
+                featured_deals: "遊戲&特色優惠",
+                news_section: "新聞",
+                news_item: "東亞獨立遊戲慶典-報名開始!",
+                news_item2: "東亞獨立遊戲慶典-公布參展名單",
+                news_full_item_1: "我們誠摯邀請來自東亞各地（包含台灣、中國、日本、韓國、香港、澳門及其他東亞區域）的獨立遊戲開發團隊，共同參與這場盛大的線上遊戲特賣會，展現我們豐富多元的創意遊戲文化。請於2025年4月4日前填寫遊戲資料。",
+                news_full_item_2: "東亞獨立遊戲慶典-公布第一批參展名單!",
+                participating_publishers: "參與廠商",
+                contact_us: "聯絡我們",
+                contact_description: "對於遊戲特賣博覽有疑問？請聯絡我們的團隊獲得更多資訊。",
+                contact_button: "聯絡我們",
+                expand: "展開",
+                collapse: "收起",
+                copyright: "© 2025 東亞獨立遊戲慶典。版權所有。",
+                organizer: "舉辦單位:",
+                discord_title: "一起玩吧！",
+                discord_description: "不管你是玩家，還是開發者，或是主播...讓我們一起玩吧!",
+                Popularity: "人氣投票+抽獎活動"
+            },
+            "zh-Hans": {
+                logo_text: "东亚独立游戏庆典",
+                home: "首页",
+                news: "新闻",
+                deals: "特卖",
+                games: "全部游戏",
+                contact: "联络",
+                browse_deals: "立即报名",
+                hero_title: "东亚独立游戏庆典 2025",
+                hero_date: "2025年8月5日至2025年8月19日",
+                hero_description: "我们诚挚邀请来自东亚各地（包含台湾、中国、日本、韩国、香港、澳门及其他东亚区域）的独立游戏开发团队，共同参与这场盛大的线上游戏特卖会，展现我们丰富多元的创意游戏文化。",
+                featured_deals: "游戏&特色优惠",
+                news_section: "新闻",
+                news_item: "东亚独立游戏庆典-报名开始!",
+                news_item2: "东亚独立游戏庆典-公布参展名单",
+                news_full_item_1: "我们诚挚邀请来自东亚各地（包含台湾、中国、日本、韩国、香港、澳门及其他东亚区域）的独立游戏开发团队，共同参与这场盛大的线上游戏特卖会，展现我们丰富多元的创意游戏文化。请于2025年4月4日前填写游戏资料。",
+                news_full_item_2: "东亚独立游戏庆典-公布第一批参展名单!",
+                participating_publishers: "参与厂商",
+                contact_us: "联络我们",
+                contact_description: "对于游戏特卖博览有疑问？请联络我们的团队获得更多资讯。",
+                contact_button: "联络我们",
+                expand: "展开",
+                collapse: "收起",
+                copyright: "© 2025 东亚独立游戏庆典。版权所有。",
+                organizer: "举办单位:",
+                discord_title: "一起玩吧！",
+                discord_description: "不管你是玩家，还是开发者，或是主播...让我们一起玩吧!",
+                Popularity: "人气投票+抽奖活动"
+            },
+            ja: {
+                logo_text: "東亞インディーゲームセレブレーション",
+                home: "ホーム",
+                news: "ニュース",
+                deals: "セール",
+                games: "ゲーム",
+                contact: "連絡先",
+                browse_deals: "今すぐ申し込む",
+                hero_title: "東亞インディーゲームセレブレーション 2025",
+                hero_date: "2025年8月5日〜2025年8月19日",
+                hero_description: "台湾、中国、日本、韓国、香港、マカオ、その他東亞地域のインディーゲーム開発チームの皆様を心よりご招待し、この盛大なオンラインゲームセールイベントで多彩なクリエイティブ文化を発信していただきます。",
+                featured_deals: "ゲーム＆特別オファー",
+                news_section: "ニュース",
+                news_item: "東亞インディーゲームセレブレーション－募集開始！",
+                news_item2: "동아시아 인디게임 페스티벌 - 참가자 명단 발표",
+                news_full_item_1: "台湾、中国、日本、韓国、香港、マカオ、その他東亞地域のインディーゲーム開発チームの皆様を心よりご招待いたします。2025年4月4日までにゲーム情報を提出してください。",
+                news_full_item_2: "東亞インディーゲームセレブレーション－第一陣の参加者発表！",
+                participating_publishers: "参加出版社",
+                contact_us: "お問い合わせ",
+                contact_description: "イベントに関するご質問は、ぜひ当チームまでお問い合わせください。",
+                contact_button: "お問い合わせ",
+                expand: "展開",
+                collapse: "折りたたむ",
+                copyright: "© 2025 東亞インディーゲームセレブレーション。全著作権所有。",
+                organizer: "主催者:",
+                discord_title: "一緒に遊ぼう！",
+                discord_description: "プレイヤーでも、開発者でも、配信者でも…みんなで一緒に遊ぼう！",
+                Popularity: "人気投票＋抽選イベント"
+            },
+            ko: {
+                logo_text: "동아시아 인디 게임 축제",
+                home: "홈",
+                news: "뉴스",
+                deals: "특가",
+                games: "전체 게임",
+                contact: "연락",
+                browse_deals: "지금 등록하기",
+                hero_title: "동아시아 인디 게임 축제 2025",
+                hero_date: "2025년 8월 5일 ~ 2025년 8월 19일",
+                hero_description: "대만, 중국, 일본, 한국, 홍콩, 마카오 및 기타 동아시아 지역의 인디 게임 개발팀을 진심으로 초대하여, 이 거대한 온라인 게임 세일 행사에 참여하고 풍부하고 다양한 창의적인 게임 문화를 선보입니다。",
+                featured_deals: "게임 & 특별 혜택",
+                news_section: "뉴스",
+                news_item: "동아시아 인디 게임 축제 - 등록 시작!",
+                news_item2: "동아시아 인디 게임 축제 - 1차 참가자 명단 공개",
+                news_full_item_1: "대만, 중국, 일본, 한국, 홍콩, 마카오 및 기타 동아시아 지역의 인디 게임 개발팀을 진심으로 초대하여, 이 거대한 온라인 게임 세일 행사에 참여하고 풍부하고 다양한 창의적인 게임 문화를 선보입니다. 2025년 4월 4일 전까지 게임 정보를 작성해 주세요。",
+                news_full_item_2: "동아시아 인디 게임 축제 - 1차 참가자 명단 공개!",
+                participating_publishers: "참여 퍼블리셔",
+                contact_us: "문의하기",
+                contact_description: "게임 세일 박람회에 대해 궁금하신 점이 있으시면 저희 팀에 문의해 주세요。",
+                contact_button: "문의하기",
+                expand: "펼치기",
+                collapse: "접기",
+                copyright: "© 2025 동아시아 인디 게임 축제. 모든 권리 보유。",
+                organizer: "주최:",
+                discord_title: "함께 놀아요!",
+                discord_description: "당신이 플레이어든, 개발자든, 스트리머든... 함께 놀아요!",
+                Popularity: "인기 투표＋추첨 이벤트"
+            }
+        };
 
-    // 語言切換
-    document.getElementById("language-select").addEventListener("change", (e) => {
-      currentLanguage = e.target.value;
-      updateTranslations();
-      if (featuredDealsData.length) {
-        generateFeaturedDeals(featuredDealsData);
-      }
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-        fetch('vt/data.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('vt-container');
-                const grid = document.createElement('div');
-                grid.className = 'grid-container';
-                
-                data.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'youtuber-card';
+        let currentLanguage = "zh";
+        const browserLang = navigator.language.toLowerCase();
+        if (browserLang.startsWith("zh")) {
+            currentLanguage = browserLang === "zh-cn" || browserLang === "zh-hans" ? "zh-Hans" : "zh";
+        } else if (browserLang.startsWith("ja")) {
+            currentLanguage = "ja";
+        } else if (browserLang.startsWith("ko")) {
+            currentLanguage = "ko";
+        } else if (browserLang.startsWith("en")) {
+            currentLanguage = "en";
+        }
 
-                    // ... (The rest of the original script.js logic to build the card) ...
+        let featuredDealsData = [];
+        let publishersData = [];
+        let currentCarouselIndex = 0;
 
-                    container.appendChild(grid);
+        function updateTranslations() {
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    el.textContent = translations[currentLanguage][key];
+                }
+            });
+            updateNewsToggleButtons();
+        }
+
+        function generateFeaturedDeals(data) {
+            const container = document.getElementById("featured-deals-container");
+            if (!container || !data) return;
+            container.innerHTML = "";
+            const total = data.length;
+            for (let i = 0; i < 16 && i < total; i++) {
+                const idx = (currentCarouselIndex + i) % total;
+                const row = data[idx];
+                if (!row || !row.steamLink) continue;
+                const title = row["title_" + currentLanguage] || (currentLanguage === "zh-Hans" ? row["title_zh"] : row["title_en"]);
+                const match = row.steamLink.match(/\/app\/(\d+)/);
+                let imageUrl = match ? `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${match[1]}/header.jpg` : 'placeholder.svg';
+                const card = document.createElement("div");
+                card.className = "border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow";
+                card.innerHTML = `
+                    <div class="relative h-48">
+                        <a href="${row.steamLink}?utm_source=eaigc2025" target="_blank">
+                            <img src="${imageUrl}" alt="${title}" class="object-cover absolute inset-0 w-full h-full zoom-image">
+                        </a>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">${title}</h3>
+                    </div>`;
+                container.appendChild(card);
+            }
+        }
+
+        function loadDealsCSV() {
+            Papa.parse("deals.csv", {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    featuredDealsData = results.data;
+                    generateFeaturedDeals(featuredDealsData);
+                }
+            });
+        }
+
+        function generatePublishers(data) {
+            const container = document.getElementById("publishers-container");
+            if (!container || !data) return;
+            container.innerHTML = "";
+            data.forEach(row => {
+                if (!row || !row.link || !row.logo || !row.name) return;
+                const a = document.createElement("a");
+                a.href = row.link;
+                a.target = "_blank";
+                a.className = "flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow";
+                a.innerHTML = `
+                    <img src="logos/${row.logo}" alt="${row.name}" width="120" height="80" class="object-contain">
+                    <div class="mt-2 text-center font-medium" data-i18n="${row.name}">${row.name}</div>`;
+                container.appendChild(a);
+            });
+        }
+
+        function loadPublishersCSV() {
+            Papa.parse("publishers.csv", {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    publishersData = results.data;
+                    generatePublishers(publishersData);
+                }
+            });
+        }
+
+        function updateNewsToggleButtons() {
+            document.querySelectorAll(".news-toggle-btn").forEach(btn => {
+                const fullContent = btn.closest(".bg-white")?.querySelector(".news-full-content");
+                if (!fullContent) return;
+                const isHidden = fullContent.classList.contains("hidden");
+                const span = btn.querySelector("span");
+                if (span) {
+                   span.textContent = isHidden ? (translations[currentLanguage]?.expand || 'Expand') : (translations[currentLanguage]?.collapse || 'Collapse');
+                }
+            });
+        }
+
+        document.getElementById("next-deals")?.addEventListener("click", () => {
+            if (featuredDealsData.length) {
+                currentCarouselIndex = (currentCarouselIndex + 16) % featuredDealsData.length;
+                generateFeaturedDeals(featuredDealsData);
+            }
+        });
+
+        document.getElementById("prev-deals")?.addEventListener("click", () => {
+            if (featuredDealsData.length) {
+                currentCarouselIndex = (currentCarouselIndex - 16 + featuredDealsData.length) % featuredDealsData.length;
+                generateFeaturedDeals(featuredDealsData);
+            }
+        });
+
+        document.querySelectorAll(".news-toggle-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const fullContent = btn.closest(".bg-white")?.querySelector(".news-full-content");
+                if (fullContent) {
+                    fullContent.classList.toggle("hidden");
+                    updateNewsToggleButtons();
+                }
+            });
+        });
+
+        document.getElementById("language-select")?.addEventListener("change", (e) => {
+            currentLanguage = e.target.value;
+            updateTranslations();
+            generateFeaturedDeals(featuredDealsData);
+        });
+
+        // --- End of Main Page Logic ---
+
+        // --- Start of YouTuber Card Logic ---
+        const vtContainer = document.getElementById("vt-container");
+        let timeoutRefs = {};
+
+        function loadYoutuberData() {
+            if (vtContainer) {
+                fetch("vt/data.json")
+                    .then((response) => {
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.json();
+                    })
+                    .then((youtubersData) => {
+                        vtContainer.innerHTML = "";
+                        const grid = document.createElement('div');
+                        grid.className = 'grid-container';
+                        youtubersData.forEach((data) => {
+                            const card = createYoutuberCard(data);
+                            grid.appendChild(card);
+                        });
+                        vtContainer.appendChild(grid);
+                    })
+                    .catch((error) => {
+                        console.error("無法載入 YouTuber 資料:", error);
+                        vtContainer.innerHTML = "<p>資料載入失敗。</p>";
+                    });
+            }
+        }
+
+        function createYoutuberCard(data) {
+            const card = document.createElement("div");
+            card.className = "youtuber-card";
+            card.dataset.id = data.id;
+
+            const avatarHtml = data.channelAvatarUrl
+                ? `<img src="${data.channelAvatarUrl}" alt="${data.channelName} avatar" class="channel-avatar">`
+                : `<div class="channel-avatar">${data.channelName.charAt(0)}</div>`;
+
+            const characterImageUrl = `vt/${data.characterImage || 'https://via.placeholder.com/200x300'}`;
+            const videoThumbnailUrl = data.videoThumbnail || 'https://via.placeholder.com/200x120';
+
+            card.innerHTML = `
+                <div class="character-image-container">
+                    <a href="${data.channelUrl}" target="_blank" rel="noopener noreferrer">
+                        <img
+                            src="${characterImageUrl}"
+                            alt="${data.channelName} character"
+                            class="character-image"
+                            style="width: ${data.characterImageSize.width}px; height: ${data.characterImageSize.height}px;"
+                        />
+                    </a>
+                </div>
+                <div class="content-area">
+                    <div class="channel-info">
+                        ${avatarHtml}
+                        <a href="${data.channelUrl}" target="_blank" rel="noopener noreferrer" class="channel-name">
+                            ${data.channelName}
+                        </a>
+                    </div>
+                    <div class="tags-container">
+                        ${data.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+                    </div>
+                    <a href="${data.videoUrl}" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="group">
+                            <div class="video-thumbnail-container">
+                                <img
+                                    src="${videoThumbnailUrl}"
+                                    alt="Video thumbnail"
+                                    class="video-thumbnail"
+                                />
+                                <div class="video-overlay">二次播</div>
+                            </div>
+                            <h3 class="video-title">${data.videoTitle}</h3>
+                            <p class="upload-time">${data.uploadTime}</p>
+                        </div>
+                    </a>
+                </div>
+            `;
+            
+            card.addEventListener("mouseenter", () => handleMouseEnter(card, data));
+            card.addEventListener("mouseleave", () => handleMouseLeave(card));
+
+            return card;
+        }
+
+        function handleMouseEnter(card, data) {
+            const cardId = card.dataset.id;
+            if (data.hoverMessages && data.hoverMessages.length > 0) {
+                if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
+                timeoutRefs[cardId] = [];
+                const cardRect = card.getBoundingClientRect();
+                const bubbles = data.hoverMessages.map((message, index) => {
+                    const bubble = createFloatingBubble(message, cardRect, index);
+                    card.appendChild(bubble);
+                    return bubble;
                 });
-            })
-            .catch(error => console.error('Error loading data:', error));
+                const fadeInTimeout = setTimeout(() => bubbles.forEach(b => b.classList.add("visible")), 100);
+                const fadeOutTimeout = setTimeout(() => bubbles.forEach(b => b.classList.remove("visible")), 2100);
+                const cleanupTimeout = setTimeout(() => bubbles.forEach(b => b.remove()), 3100);
+                timeoutRefs[cardId].push(fadeInTimeout, fadeOutTimeout, cleanupTimeout);
+            }
+
+            const imageElement = card.querySelector('.character-image');
+            if (imageElement && data.characterImageHover) {
+                imageElement.dataset.originalSrc = imageElement.src;
+                imageElement.src = `vt/${data.characterImageHover}`;
+                imageElement.classList.add('hover-jump');
+            }
+        }
+
+        function handleMouseLeave(card) {
+            const cardId = card.dataset.id;
+            const bubbles = card.querySelectorAll(".floating-bubble");
+            bubbles.forEach(bubble => bubble.classList.remove("visible"));
+            if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
+            timeoutRefs[cardId] = [];
+            const cleanupTimeout = setTimeout(() => bubbles.forEach(b => b.remove()), 1000);
+            timeoutRefs[cardId].push(cleanupTimeout);
+
+            const imageElement = card.querySelector('.character-image');
+            if (imageElement && imageElement.dataset.originalSrc) {
+                imageElement.src = imageElement.dataset.originalSrc;
+                imageElement.classList.remove('hover-jump');
+                imageElement.removeAttribute('data-original-src');
+            }
+        }
+        
+        function createFloatingBubble(text, cardRect, index) {
+            const bubble = document.createElement("div");
+            bubble.className = "floating-bubble";
+            const position = generateRandomPosition(cardRect, index);
+            bubble.style.left = `${position.x}px`;
+            bubble.style.top = `${position.y}px`;
+            bubble.innerHTML = `<div class="bubble-content">${text}</div>`;
+            return bubble;
+        }
+
+        function generateRandomPosition(cardRect, index) {
+            const cardWidth = cardRect.width;
+            const cardHeight = cardRect.height;
+            const positions = [
+                { x: Math.random() * cardWidth, y: -20 - Math.random() * 20 },
+                { x: -50 - Math.random() * 40, y: Math.random() * cardHeight },
+                { x: cardWidth + 50 + Math.random() * 40, y: Math.random() * cardHeight },
+                { x: -40 - Math.random() * 30, y: -20 - Math.random() * 30 },
+                { x: cardWidth + 40 + Math.random() * 30, y: -20 - Math.random() * 30 },
+            ];
+            return positions[index % positions.length];
+        }
+        // --- End of YouTuber Card Logic ---
+
+        // Initial load
+        updateTranslations();
+        loadDealsCSV();
+        loadPublishersCSV();
+        loadYoutuberData();
     });
   </script>
 </body>
