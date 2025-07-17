@@ -108,8 +108,20 @@
 
     .card-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .card-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .card-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
     }
 
     .card {
@@ -118,29 +130,44 @@
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         overflow: hidden;
         transition: transform 0.2s;
+        display: flex; /* Use flexbox for layout */
+        flex-direction: column; /* Stack items vertically */
+        height: 100%; /* Ensure card fills the grid cell height */
     }
 
     .card:hover {
         transform: translateY(-5px);
     }
 
+    .card-header {
+        height: 180px; /* Give a fixed height to the image container */
+        overflow: hidden;
+    }
+
     .card-header img {
         width: 100%;
-        height: auto;
+        height: 100%; /* Make image fill the container */
+        object-fit: cover; /* Cover the area without distortion */
     }
 
     .card-body {
         padding: 20px;
+        flex-grow: 1; /* Allow body to take up remaining space */
+        display: flex;
+        flex-direction: column;
     }
 
     .card-body h2 {
         margin-top: 0;
         color: #333;
+        word-wrap: break-word; /* Ensure long titles wrap */
     }
 
     .card-body p {
         color: #666;
         line-height: 1.6;
+        flex-grow: 1; /* Push social links to the bottom */
+        word-wrap: break-word; /* Ensure long descriptions wrap */
     }
 
     .social-links a {
