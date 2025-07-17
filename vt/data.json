@@ -87,20 +87,20 @@
   },
    {
     "id": 6,
-    "channelName": "茶貓 TeaCat Ch.",
-    "channelUrl": "https://www.youtube.com/channel/UCOMUHIn2BmtBWokkMIFtIng",
-    "channelAvatarUrl": "https://yt3.googleusercontent.com/h_mfX0mbjn4ScdRk7wZLN-iTAubrmQNQQr87CFvfi8YhwtD2Ls1V9J8aDxG5D-kvJeIXSmC2pw=s160-c-k-c0x00ffffff-no-rj",
-    "characterImage": "img/05_01.png",
-    "characterImageHover": "img/05_01.png",
+    "channelName": "瑟菲娜 SenFina Ch.",
+    "channelUrl": "https://www.youtube.com/channel/UCjz2B8zRiSenHFW1nuntY6A",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/5ZY1GKXZLLhZ7PIsVLDeb91ZcIiCrlTP3wMfwUf384Ci346h0OWrgZVYd5OaaL3KRXkoHJF8Sw=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/06_01.png",
+    "characterImageHover": "img/05_02.png",
     "characterImageSize": { "width": 230, "height": 450 },
-    "videoThumbnail": "https://i.ytimg.com/vi/E-zuCd2EJhA/hqdefault.jpg",
-    "videoUrl": "https://www.youtube.com/live/E-zuCd2EJhA?si=U27zoJJeJGjXMz2P",
-    "videoTitle": "【幻獸帕魯】突發登入帕魯世界｜抓怪、蓋家、炸一輪！",
-    "uploadTime": "2025/7/15",
-    "tags": ["貓", "遊戲","比爾數位科技"],
+    "videoThumbnail": "https://i.ytimg.com/vi/jbh0RZgf0l4/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/jbh0RZgf0l4?si=VBUXEj1EG3rP0i3v",
+    "videoTitle": "【愛開蓋樂世Arcade Galaxy】🚀 衝進銀河賽道！Arcade Galaxy 競速挑戰！",
+    "uploadTime": "2025/3/16",
+    "tags": ["電子精靈", "遊戲","比爾數位科技"],
     "hoverMessages": [
-      "老子只是一隻貓",
-      "冷泡茶貓最對味！"
+      "娜娜早安！",
+      "娜娜！"
     ]
   }
 

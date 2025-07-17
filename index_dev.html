@@ -47,24 +47,30 @@
         margin-bottom: 1.5rem; /* mb-6 */
     }
 
-    /* 響應式網格布局 */
+    /* 響應式網格布局 - 1, 2, 4欄 */
     .grid-container {
         display: grid;
-        grid-template-columns: 1fr; /* grid-cols-1 */
+        grid-template-columns: 1fr; /* 手機: 1欄 */
         gap: 1.5rem; /* gap-6 */
     }
 
-    @media (min-width: 1024px) { /* lg: */
+    @media (min-width: 768px) { /* 平板: 2欄 */
         .grid-container {
-            grid-template-columns: repeat(2, 1fr); /* lg:grid-cols-2 */
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1280px) { /* 桌面: 4欄 */
+        .grid-container {
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 
     /* YouTuber 卡片 */
     .youtuber-card {
-        position: relative;
+        position: relative; /* 為了絕對定位浮動元素 */
         display: flex;
-        gap: 1rem; /* gap-4 */
+        flex-direction: column; /* 讓內容垂直排列 */
         padding: 1rem; /* p-4 */
         background-color: #ffffff; /* bg-white */
         border-radius: 0.5rem; /* rounded-lg */
@@ -77,26 +83,38 @@
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* hover:shadow-md */
     }
 
-    /* 角色圖片 */
-    .character-image-container {
-        flex-shrink: 0;
+    /* 浮動圖片容器 */
+    .floating-character-container {
+        position: absolute;
+        bottom: 0;
+        left: 105%; /* 顯示在卡片右側，並留有5%的間距 */
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-out, visibility 0.3s;
+        pointer-events: none; /* 避免攔截滑鼠事件 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .floating-character-container.visible {
+        opacity: 1;
+        visibility: visible;
     }
 
     .character-image {
-        border-radius: 0.5rem; /* rounded-lg */
+        border-radius: 0.5rem;
         object-fit: cover;
-        transition: opacity 0.2s;
-        cursor: pointer;
-    }
-
-    .character-image:hover {
-        opacity: 0.9; /* hover:opacity-90 */
     }
 
     /* 右側內容 */
     .content-area {
         flex: 1 1 0%;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
 
     .channel-info {
@@ -110,19 +128,14 @@
         width: 2.5rem; /* w-10 */
         height: 2.5rem; /* h-10 */
         border-radius: 9999px; /* rounded-full */
-        
-        /* 針對圖片的樣式 */
-        object-fit: cover; /* 確保圖片填滿容器不變形 */
-
-        /* 針對 fallback (文字頭像) 的樣式 */
+        object-fit: cover;
         background-color: #dbeafe; /* bg-blue-100 */
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.25rem; /* 稍微放大文字以適應新尺寸 */
         font-weight: 500; /* font-medium */
         color: #2563eb; /* text-blue-600 */
-        flex-shrink: 0; /* 防止頭像被壓縮 */
+        flex-shrink: 0;
     }
 
     .channel-name {
@@ -138,6 +151,7 @@
     /* 標籤 */
     .tags-container {
         display: flex;
+        flex-wrap: wrap; /* 確保標籤能換行 */
         gap: 0.5rem; /* gap-2 */
         margin-bottom: 0.75rem; /* mb-3 */
     }
@@ -147,19 +161,15 @@
         padding: 0.25rem 0.75rem;
         background-color: #dcfce7; /* bg-green-100 */
         color: #166534; /* text-green-700 */
-        border-radius: 0.375rem; /* badge has its own rounding */
+        border-radius: 0.375rem;
         font-size: 0.875rem;
         font-weight: 500;
-        transition: background-color 0.2s;
-    }
-
-    .tag:hover {
-        background-color: #bbf7d0; /* hover:bg-green-200 */
     }
 
     /* 影片區塊 */
     .video-link {
         text-decoration: none;
+        margin-top: auto; /* 將影片區塊推到底部 */
     }
 
     .video-link .group:hover .video-title {
@@ -184,22 +194,21 @@
 
     .video-overlay {
         position: absolute;
-        bottom: 0.5rem; /* bottom-2 */
-        right: 0.5rem; /* right-2 */
-        background-color: rgba(0, 0, 0, 0.7); /* bg-black bg-opacity-70 */
+        bottom: 0.5rem;
+        right: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.7);
         color: white;
-        font-size: 0.75rem; /* text-xs */
-        padding: 0.125rem 0.25rem; /* px-1 py-0.5 */
-        border-radius: 0.25rem; /* rounded */
+        font-size: 0.75rem;
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
     }
 
     .video-title {
-        font-size: 0.875rem; /* text-sm */
-        font-weight: 500; /* font-medium */
-        color: #111827; /* text-gray-900 */
-        margin-bottom: 0.25rem; /* mb-1 */
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #111827;
+        margin-bottom: 0.25rem;
         transition: color 0.2s;
-        /* line-clamp-2 */
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -207,39 +216,38 @@
     }
 
     .upload-time {
-        font-size: 0.75rem; /* text-xs */
-        color: #6b7280; /* text-gray-500 */
+        font-size: 0.75rem;
+        color: #6b7280;
     }
 
-    /* 氣泡訊息 */
+    /* 氣泡訊息 (現在相對於浮動圖片定位) */
     .floating-bubble {
         position: absolute;
         z-index: 50;
         pointer-events: none;
-        transition: opacity 1s, transform 1s;
+        transition: opacity 0.3s, transform 0.3s;
         opacity: 0;
-        transform: translate(-50%, -100%) scale(0.95);
+        transform: translate(-50%, -100%); /* 初始位置在圖片正上方，並向上偏移 */
     }
 
     .floating-bubble.visible {
         opacity: 1;
-        transform: translate(-50%, -100%) scale(1);
+        transform: translate(-50%, -110%); /* 動畫效果，再向上移動一點 */
     }
 
     .bubble-content {
-        background-color: #ffe4e6; /* bg-pink-100 */
-        border: 2px solid #f9a8d4; /* border-pink-300 */
-        border-radius: 9999px; /* rounded-full */
-        padding: 0.5rem 0.75rem; /* px-3 py-2 */
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-lg */
+        background-color: #ffe4e6;
+        border: 2px solid #f9a8d4;
+        border-radius: 9999px;
+        padding: 0.5rem 0.75rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         position: relative;
-        color: #9d2449; /* text-pink-800 */
-        font-size: 0.875rem; /* text-sm */
-        font-weight: 500; /* font-medium */
+        color: #9d2449;
+        font-size: 0.875rem;
+        font-weight: 500;
         white-space: nowrap;
     }
 
-    /* 氣泡尾巴 */
     .bubble-content::after {
         content: '';
         position: absolute;
@@ -250,25 +258,7 @@
         height: 0;
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
-        border-top: 5px solid #f9a8d4; /* border-t-pink-300 */
-    }
-
-    /* 定義一個名為 jumpAnimation 的動畫 */
-    @keyframes jumpAnimation {
-      0% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-8px); /* 向上跳躍 8px */
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    /* 當圖片擁有 .hover-jump class 時，應用此動畫 */
-    .character-image.hover-jump {
-      animation: jumpAnimation 0.6s ease-in-out infinite;
+        border-top: 5px solid #f9a8d4;
     }
   </style>
 </head>
@@ -798,32 +788,31 @@
 
         // --- End of Main Page Logic ---
 
-        // --- Start of YouTuber Card Logic ---
+        // --- Start of YouTuber Card Logic (New Version) ---
         const vtContainer = document.getElementById("vt-container");
-        let timeoutRefs = {};
 
         function loadYoutuberData() {
-            if (vtContainer) {
-                fetch("vt/data.json")
-                    .then((response) => {
-                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                        return response.json();
-                    })
-                    .then((youtubersData) => {
-                        vtContainer.innerHTML = "";
-                        const grid = document.createElement('div');
-                        grid.className = 'grid-container';
-                        youtubersData.forEach((data) => {
-                            const card = createYoutuberCard(data);
-                            grid.appendChild(card);
-                        });
-                        vtContainer.appendChild(grid);
-                    })
-                    .catch((error) => {
-                        console.error("無法載入 YouTuber 資料:", error);
-                        vtContainer.innerHTML = "<p>資料載入失敗。</p>";
+            if (!vtContainer) return;
+            
+            fetch("vt/data.json")
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(youtubersData => {
+                    vtContainer.innerHTML = "";
+                    const grid = document.createElement('div');
+                    grid.className = 'grid-container';
+                    youtubersData.forEach(data => {
+                        const card = createYoutuberCard(data);
+                        grid.appendChild(card);
                     });
-            }
+                    vtContainer.appendChild(grid);
+                })
+                .catch(error => {
+                    console.error("無法載入 YouTuber 資料:", error);
+                    vtContainer.innerHTML = "<p>資料載入失敗。</p>";
+                });
         }
 
         function createYoutuberCard(data) {
@@ -835,20 +824,7 @@
                 ? `<img src="${data.channelAvatarUrl}" alt="${data.channelName} avatar" class="channel-avatar">`
                 : `<div class="channel-avatar">${data.channelName.charAt(0)}</div>`;
 
-            const characterImageUrl = `vt/${data.characterImage || 'https://via.placeholder.com/200x300'}`;
-            const videoThumbnailUrl = data.videoThumbnail || 'https://via.placeholder.com/200x120';
-
             card.innerHTML = `
-                <div class="character-image-container">
-                    <a href="${data.channelUrl}" target="_blank" rel="noopener noreferrer">
-                        <img
-                            src="${characterImageUrl}"
-                            alt="${data.channelName} character"
-                            class="character-image"
-                            style="width: ${data.characterImageSize.width}px; height: ${data.characterImageSize.height}px;"
-                        />
-                    </a>
-                </div>
                 <div class="content-area">
                     <div class="channel-info">
                         ${avatarHtml}
@@ -859,19 +835,17 @@
                     <div class="tags-container">
                         ${data.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
                     </div>
-                    <a href="${data.videoUrl}" target="_blank" rel="noopener noreferrer" class="video-link">
-                        <div class="group">
-                            <div class="video-thumbnail-container">
-                                <img
-                                    src="${videoThumbnailUrl}"
-                                    alt="Video thumbnail"
-                                    class="video-thumbnail"
-                                />
-                                <div class="video-overlay">二次播</div>
-                            </div>
-                            <h3 class="video-title">${data.videoTitle}</h3>
-                            <p class="upload-time">${data.uploadTime}</p>
+                    <a href="${data.videoUrl}" target="_blank" rel="noopener noreferrer" class="video-link group">
+                        <div class="video-thumbnail-container">
+                            <img
+                                src="${data.videoThumbnail || 'https://via.placeholder.com/200x120'}"
+                                alt="Video thumbnail"
+                                class="video-thumbnail"
+                            />
+                            <div class="video-overlay">二次播</div>
                         </div>
+                        <h3 class="video-title">${data.videoTitle}</h3>
+                        <p class="upload-time">${data.uploadTime}</p>
                     </a>
                 </div>
             `;
@@ -883,69 +857,60 @@
         }
 
         function handleMouseEnter(card, data) {
-            const cardId = card.dataset.id;
+            // Create floating container
+            const floatingContainer = document.createElement('div');
+            floatingContainer.className = 'floating-character-container';
+
+            // Create and append bubbles
             if (data.hoverMessages && data.hoverMessages.length > 0) {
-                if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
-                timeoutRefs[cardId] = [];
-                const cardRect = card.getBoundingClientRect();
-                const bubbles = data.hoverMessages.map((message, index) => {
-                    const bubble = createFloatingBubble(message, cardRect, index);
-                    card.appendChild(bubble);
-                    return bubble;
+                data.hoverMessages.forEach((message, index) => {
+                    const bubble = createFloatingBubble(message, index);
+                    floatingContainer.appendChild(bubble);
+                    setTimeout(() => bubble.classList.add('visible'), 50 * (index + 1));
                 });
-                const fadeInTimeout = setTimeout(() => bubbles.forEach(b => b.classList.add("visible")), 100);
-                const fadeOutTimeout = setTimeout(() => bubbles.forEach(b => b.classList.remove("visible")), 2100);
-                const cleanupTimeout = setTimeout(() => bubbles.forEach(b => b.remove()), 3100);
-                timeoutRefs[cardId].push(fadeInTimeout, fadeOutTimeout, cleanupTimeout);
             }
 
-            const imageElement = card.querySelector('.character-image');
-            if (imageElement && data.characterImageHover) {
-                imageElement.dataset.originalSrc = imageElement.src;
-                imageElement.src = `vt/${data.characterImageHover}`;
-                imageElement.classList.add('hover-jump');
-            }
+            // Create character image
+            const img = document.createElement('img');
+            img.src = `vt/${data.characterImage}`;
+            img.alt = `${data.channelName} character`;
+            img.className = 'character-image';
+            img.style.width = `${data.characterImageSize.width}px`;
+            img.style.height = `${data.characterImageSize.height}px`;
+            floatingContainer.appendChild(img);
+            
+            card.appendChild(floatingContainer);
+            
+            // Use timeout to allow the element to be added to DOM before adding class for transition
+            setTimeout(() => {
+                floatingContainer.classList.add('visible');
+            }, 10);
         }
 
         function handleMouseLeave(card) {
-            const cardId = card.dataset.id;
-            const bubbles = card.querySelectorAll(".floating-bubble");
-            bubbles.forEach(bubble => bubble.classList.remove("visible"));
-            if (timeoutRefs[cardId]) timeoutRefs[cardId].forEach(clearTimeout);
-            timeoutRefs[cardId] = [];
-            const cleanupTimeout = setTimeout(() => bubbles.forEach(b => b.remove()), 1000);
-            timeoutRefs[cardId].push(cleanupTimeout);
-
-            const imageElement = card.querySelector('.character-image');
-            if (imageElement && imageElement.dataset.originalSrc) {
-                imageElement.src = imageElement.dataset.originalSrc;
-                imageElement.classList.remove('hover-jump');
-                imageElement.removeAttribute('data-original-src');
+            const floatingContainer = card.querySelector('.floating-character-container');
+            if (floatingContainer) {
+                floatingContainer.classList.remove('visible');
+                // Remove from DOM after transition ends
+                setTimeout(() => {
+                    floatingContainer.remove();
+                }, 300); // Must match CSS transition duration
             }
         }
         
-        function createFloatingBubble(text, cardRect, index) {
+        function createFloatingBubble(text, index) {
             const bubble = document.createElement("div");
             bubble.className = "floating-bubble";
-            const position = generateRandomPosition(cardRect, index);
-            bubble.style.left = `${position.x}px`;
-            bubble.style.top = `${position.y}px`;
+            
+            // Position bubbles above the image area
+            const yOffset = 30 + (index * 45);
+            bubble.style.left = '50%';
+            bubble.style.top = `-${yOffset}px`;
+
             bubble.innerHTML = `<div class="bubble-content">${text}</div>`;
             return bubble;
         }
 
-        function generateRandomPosition(cardRect, index) {
-            const cardWidth = cardRect.width;
-            const cardHeight = cardRect.height;
-            const positions = [
-                { x: Math.random() * cardWidth, y: -20 - Math.random() * 20 },
-                { x: -50 - Math.random() * 40, y: Math.random() * cardHeight },
-                { x: cardWidth + 50 + Math.random() * 40, y: Math.random() * cardHeight },
-                { x: -40 - Math.random() * 30, y: -20 - Math.random() * 30 },
-                { x: cardWidth + 40 + Math.random() * 30, y: -20 - Math.random() * 30 },
-            ];
-            return positions[index % positions.length];
-        }
         // --- End of YouTuber Card Logic ---
 
         // Initial load
