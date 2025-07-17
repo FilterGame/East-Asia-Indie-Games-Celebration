@@ -66,5 +66,42 @@
       "皆様こんばんは、天井姫美です",
       "今日は鉱石取りに行きます！"
     ]
+  },
+   {
+    "id": 5,
+    "channelName": "茶貓 TeaCat Ch.",
+    "channelUrl": "https://www.youtube.com/channel/UCOMUHIn2BmtBWokkMIFtIng",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/h_mfX0mbjn4ScdRk7wZLN-iTAubrmQNQQr87CFvfi8YhwtD2Ls1V9J8aDxG5D-kvJeIXSmC2pw=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/05_01.png",
+    "characterImageHover": "img/05_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/E-zuCd2EJhA/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/E-zuCd2EJhA?si=U27zoJJeJGjXMz2P",
+    "videoTitle": "【幻獸帕魯】突發登入帕魯世界｜抓怪、蓋家、炸一輪！",
+    "uploadTime": "2025/7/15",
+    "tags": ["貓", "遊戲","比爾數位科技"],
+    "hoverMessages": [
+      "老子只是一隻貓",
+      "冷泡茶貓最對味！"
+    ]
+  },
+   {
+    "id": 6,
+    "channelName": "茶貓 TeaCat Ch.",
+    "channelUrl": "https://www.youtube.com/channel/UCOMUHIn2BmtBWokkMIFtIng",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/h_mfX0mbjn4ScdRk7wZLN-iTAubrmQNQQr87CFvfi8YhwtD2Ls1V9J8aDxG5D-kvJeIXSmC2pw=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/05_01.png",
+    "characterImageHover": "img/05_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/E-zuCd2EJhA/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/E-zuCd2EJhA?si=U27zoJJeJGjXMz2P",
+    "videoTitle": "【幻獸帕魯】突發登入帕魯世界｜抓怪、蓋家、炸一輪！",
+    "uploadTime": "2025/7/15",
+    "tags": ["貓", "遊戲","比爾數位科技"],
+    "hoverMessages": [
+      "老子只是一隻貓",
+      "冷泡茶貓最對味！"
+    ]
   }
+
 ]
