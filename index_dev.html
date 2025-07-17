@@ -861,7 +861,16 @@
             const floatingContainer = document.createElement('div');
             floatingContainer.className = 'floating-character-container';
 
-            // Create and append bubbles
+            // Create character image FIRST
+            const img = document.createElement('img');
+            img.src = `vt/${data.characterImage}`;
+            img.alt = `${data.channelName} character`;
+            img.className = 'character-image';
+            img.style.width = `${data.characterImageSize.width}px`;
+            img.style.height = `${data.characterImageSize.height}px`;
+            floatingContainer.appendChild(img); // Append image
+
+            // Create and append bubbles SECOND
             if (data.hoverMessages && data.hoverMessages.length > 0) {
                 data.hoverMessages.forEach((message, index) => {
                     const bubble = createFloatingBubble(message, index);
@@ -869,15 +878,6 @@
                     setTimeout(() => bubble.classList.add('visible'), 50 * (index + 1));
                 });
             }
-
-            // Create character image
-            const img = document.createElement('img');
-            img.src = `vt/${data.characterImage}`;
-            img.alt = `${data.channelName} character`;
-            img.className = 'character-image';
-            img.style.width = `${data.characterImageSize.width}px`;
-            img.style.height = `${data.characterImageSize.height}px`;
-            floatingContainer.appendChild(img);
             
             card.appendChild(floatingContainer);
             
