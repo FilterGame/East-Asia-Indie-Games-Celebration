@@ -230,7 +230,7 @@
     "tags": ["無性別妖怪", "遊戲","亞姆目擊情報"],
     "hoverMessages": [
       "好耶",
-	  "\亞姆真可愛/",
+	  "亞姆真可愛!!",
       "好耶"
     ]
   },
@@ -249,7 +249,7 @@
     "tags": ["聲優偶像", "唱歌動漫遊戲","個人勢Vtuber"],
     "hoverMessages": [
       "妮卡",
-	  "\NicaWolper/",
+	  "NicaWolper",
       "=ω= ++ =ω= ++"
     ]
   },
@@ -391,7 +391,7 @@
   },
        {
     "id": 23,
-    "channelName": "鴨鴨山 ch."
+    "channelName": "鴨鴨山 ch.",
     "channelUrl": "https://www.youtube.com/@KAMOYABANANA",
     "channelAvatarUrl": "https://yt3.googleusercontent.com/aVKU4LXPJ08gSPiw3UydUGYNZ4zcds_py39rYEnnzw9D-yMM9kIzJnEHF1o9wGaJRv6we4oKqQ=s160-c-k-c0x00ffffff-no-rj",
     "characterImage": "img/23_01.png",
@@ -405,7 +405,7 @@
     "hoverMessages": [
 	"鴨鴨!!!"
     ]
-  },
+  }
 
 
 
