@@ -233,7 +233,183 @@
 	  "\亞姆真可愛/",
       "好耶"
     ]
-  }
+  },
+       {
+    "id": 14,
+    "channelName": "Nica Ch. 妮卡沃爾",
+    "channelUrl": "https://www.youtube.com/@NicaCh",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/3ruTW1ZNoz-I0tsEvFQ7eyc2D7BwlHIl1Cww47zOvJgIvxUXvY9Y7_9-ARD1mRetKr7IqKMP=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/14_01.png",
+    "characterImageHover": "img/14_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/nbEx_QHQFCU/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=nbEx_QHQFCU",
+    "videoTitle": "【洛克人X3】目標通關 洛克人X3 完全初見🔥",
+    "uploadTime": "2025/7/15",
+    "tags": ["聲優偶像", "唱歌動漫遊戲","個人勢Vtuber"],
+    "hoverMessages": [
+      "妮卡",
+	  "\NicaWolper/",
+      "=ω= ++ =ω= ++"
+    ]
+  },
+       {
+    "id": 15,
+    "channelName": "枝葉紗弥",
+    "channelUrl": "https://www.youtube.com/@EdabaSaya",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/cbAAwvK_gt5Q9ZEOJaHAcq3lVfRNcEv3Ad-IxvdEUXGA3JzkNEL8XNwffHjNdUpkfO-s4RbTUQ=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/15_01.png",
+    "characterImageHover": "img/15_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/86uRTtTA0-w/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=86uRTtTA0-w",
+    "videoTitle": "【LITTLE NIGHTMARES-リトルナイトメア-】欲望という名の恐怖【DLC1-2】",
+    "uploadTime": "2025/7/14",
+    "tags": ["ゲーム", "雑談"],
+    "hoverMessages": [
+      "紗弥"
+    ]
+  },
+       {
+    "id": 16,
+    "channelName": "欣希亞 Live 💜 ",
+    "channelUrl": "https://www.youtube.com/@CyniaLive",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/RurFW7lfaMAbs33TCvokXAgxZFwwg1E_S5vumWHgUGc6-Fmid6yx8PkcaB7aeAJg1oVfEY3B=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/16_01.png",
+    "characterImageHover": "img/16_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/rLyAD31hG4Y/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=rLyAD31hG4Y",
+    "videoTitle": "《 貓咪大戰爭 》目標世界2!!! 10週年",
+    "uploadTime": "2025/7/15",
+    "tags": ["遊戲勢Vtuber ", "個人勢Vtuber"],
+    "hoverMessages": [
+      "玩遊戲!",
+	  "希亞!!!!!!!!!!!"
+    ]
+  },
+       {
+    "id": 17,
+    "channelName": "星見遙 Haruka ",
+    "channelUrl": "https://www.youtube.com/@HarukaOwl",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/gBYxfPuWQrB1-Jc5TB2j4veyhX6XGkH3th4Yy_9Vjtbevd-en77uffYg9KytIgRoziredn2LqA=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/17_01.png",
+    "characterImageHover": "img/17_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/cIi7AaBuAQ0/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/cIi7AaBuAQ0?si=iau7VQ9nVlt7GL7N",
+    "videoTitle": "◖遙想午後☕雜談◗ 邊簽拍立得邊聊天~【星見遙】",
+    "uploadTime": "2025/7/8",
+    "tags": ["森林的魔女 ", "台灣vtuber"],
+    "hoverMessages": [
+      "遙遙🦉💜!",
+	  "小遙"
+    ]
+  },
+       {
+    "id": 18,
+    "channelName": "Oumi Channel / 星野櫻海",
+    "channelUrl": "https://www.youtube.com/@hoshinooumi",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/y9Ysq41KrrERtyJvM9UWardX3blVLEMNQb7GNXb8ocox4bVjOF2voKU80lWuxqcvIS_I8Y0BO0U=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/18_01.png",
+    "characterImageHover": "img/18_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/ThfSxQ7UMdc/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/ThfSxQ7UMdc?si=nYtFu8SXUzbi5PCj",
+    "videoTitle": "【遊戲🎮台灣獨立遊戲｜DEMO試玩】今天玩一些開發中的DEMO!! 有多少試多少",
+    "uploadTime": "2025/7/16",
+    "tags": ["遊戲","雜談", "台灣vtuber"],
+    "hoverMessages": [
+      "星野!",
+    ]
+  },
+       {
+    "id": 19,
+    "channelName": "射破衛生紙",
+    "channelUrl": "https://www.youtube.com/@S3840FUYA",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/aZS5ooYtcxOPHknxZibP2YVvKyon9Sf2eKMAdXhLcORUiPuCTPrTi1ayDKujpkmd1AHFEFhyk3I=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/19_01.png",
+    "characterImageHover": "img/19_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/RbOJ6feoOT8/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/RbOJ6feoOT8?si=6femOtYtr94sfg2Q",
+    "videoTitle": "《翻車魚冒險》窩大歐米推薦的國產彈幕遊戲~ ",
+    "uploadTime": "2025/7/16",
+    "tags": ["遊戲","台灣製造", "橘紙閃電玩"],
+    "hoverMessages": [
+      "射大!",
+    ]
+  },
+       {
+    "id": 20,
+    "channelName": "柴豆古琳 Green Ch.",
+    "channelUrl": "https://www.youtube.com/@shibamegreen",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/TWWjFmF9wDal5jdWPc92UEEKpV8dCCdzaOj-qv73L-IsPN1vn27sSac_F5lTJq0YNUWQBf-4Zg=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/20_01.png",
+    "characterImageHover": "img/20_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/2-A2ycmjqXQ/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/2-A2ycmjqXQ?si=PE_Z2bfmAv120S5_",
+    "videoTitle": "【虛境狂潮：異域交匯隊】快使用古琳卡牌，一起組一副王牌牌組吧！",
+    "uploadTime": "2025/7/12",
+    "tags": ["遊戲","外星狗"],
+    "hoverMessages": [
+      "古琳!",
+    ]
+  },
+       {
+    "id": 21,
+    "channelName": "Sachiko Ch. 清水紗智子",
+    "channelUrl": "https://www.youtube.com/@shimizusachiko",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/RoiMg3CykBCkvLepGCb0rq1zoi32SAxdpDytjcXWpL2EoeRh8YOwS5P2NSoYyaXhR95RTKWh=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/21_01.png",
+    "characterImageHover": "img/21_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/bVkciX2ykzc/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=bVkciX2ykzc",
+    "videoTitle": "【遊雜】努力升等之外能有黃色雨傘嗎? #初見歡迎 獄友們好｜楓之谷 Artale",
+    "uploadTime": "2025/6/13",
+    "tags": ["偶像","遊戲","雜談"],
+    "hoverMessages": [
+    ]
+  },
+       {
+    "id": 22,
+    "channelName": "yuu Ch. 黑咲ゆう【HKVtuber】",
+    "channelUrl": "https://www.youtube.com/@KurosakiYuu",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/asma1rr6ryn3WpUj9QraI5YR8JBlNnLcIs2giSDDlcdRBpolXHsu2dHySxFuvT6yIrIRwtNc=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/22_01.png",
+    "characterImageHover": "img/22_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/DMApvAlVeJQ/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/DMApvAlVeJQ?si=jgDGP-6XHVzOiP0S",
+    "videoTitle": "飄流新資料片！飄飄猴來襲豬兜國！《飄流幻境M 飄飄猴大冒險》 #hkvtuber #香港vtuber【黑咲游 hkvtuber】",
+    "uploadTime": "2025/7/13",
+    "tags": ["遊戲故事","遊戲","香港Vuter"],
+    "hoverMessages": [
+    ]
+  },
+       {
+    "id": 23,
+    "channelName": "鴨鴨山 ch."
+    "channelUrl": "https://www.youtube.com/@KAMOYABANANA",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/aVKU4LXPJ08gSPiw3UydUGYNZ4zcds_py39rYEnnzw9D-yMM9kIzJnEHF1o9wGaJRv6we4oKqQ=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/23_01.png",
+    "characterImageHover": "img/23_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/Ms-f4Me9woI/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/Ms-f4Me9woI?si=jIC6gDkFzTKWWEMm",
+    "videoTitle": "【背後：異化】背後是不是...有人在看鴨...萬眾期待的續作，終於姍姍來遲！（遲的只有我）",
+    "uploadTime": "2025/6/11",
+    "tags": ["呱","遊戲"],
+    "hoverMessages": [
+	"鴨鴨!!!"
+    ]
+  },
+
+
+
+
 
 
 
