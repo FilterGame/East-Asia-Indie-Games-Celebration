@@ -32,19 +32,13 @@
         margin: 0;
         padding: 1.5rem; /* p-6 */
         min-height: 100vh;
+        overflow-x: hidden; /* 防止浮動氣泡導致水平滾動條 */
     }
 
     /* 主容器 */
     .container {
         max-width: 1152px; /* max-w-6xl */
         margin: 0 auto;
-    }
-
-    .main-title {
-        font-size: 1.5rem; /* text-2xl */
-        font-weight: 700; /* font-bold */
-        color: #111827; /* text-gray-900 */
-        margin-bottom: 1.5rem; /* mb-6 */
     }
 
     /* 響應式網格布局 - 1, 2, 4欄 */
@@ -77,44 +71,18 @@
         border: 1px solid #e5e7eb; /* border */
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
         transition: box-shadow 0.2s;
+        height: 100%; /* 確保卡片在網格中等高 */
     }
 
     .youtuber-card:hover {
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* hover:shadow-md */
     }
 
-    /* 浮動圖片容器 */
-    .floating-character-container {
-        position: absolute;
-        bottom: 0;
-        left: 105%; /* 顯示在卡片右側，並留有5%的間距 */
-        z-index: 100;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease-out, visibility 0.3s;
-        pointer-events: none; /* 避免攔截滑鼠事件 */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .floating-character-container.visible {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .character-image {
-        border-radius: 0.5rem;
-        object-fit: cover;
-    }
-
-    /* 右側內容 */
+    /* 內容區 */
     .content-area {
-        flex: 1 1 0%;
-        min-width: 0;
         display: flex;
         flex-direction: column;
-        height: 100%;
+        flex-grow: 1; /* 確保內容區填滿卡片 */
     }
 
     .channel-info {
@@ -220,19 +188,19 @@
         color: #6b7280;
     }
 
-    /* 氣泡訊息 (現在相對於浮動圖片定位) */
+    /* 氣泡訊息 */
     .floating-bubble {
         position: absolute;
-        z-index: 50;
+        z-index: 100;
         pointer-events: none;
-        transition: opacity 0.3s, transform 0.3s;
+        transition: opacity 0.4s ease-out, transform 0.4s ease-out;
         opacity: 0;
-        transform: translate(-50%, -100%); /* 初始位置在圖片正上方，並向上偏移 */
+        transform: scale(0.5) translate(-50%, -50%);
     }
 
     .floating-bubble.visible {
         opacity: 1;
-        transform: translate(-50%, -110%); /* 動畫效果，再向上移動一點 */
+        transform: scale(1) translate(-50%, -50%);
     }
 
     .bubble-content {
@@ -857,57 +825,44 @@
         }
 
         function handleMouseEnter(card, data) {
-            // Create floating container
-            const floatingContainer = document.createElement('div');
-            floatingContainer.className = 'floating-character-container';
-
-            // Create character image FIRST
-            const img = document.createElement('img');
-            img.src = `vt/${data.characterImage}`;
-            img.alt = `${data.channelName} character`;
-            img.className = 'character-image';
-            img.style.width = `${data.characterImageSize.width}px`;
-            img.style.height = `${data.characterImageSize.height}px`;
-            floatingContainer.appendChild(img); // Append image
-
-            // Create and append bubbles SECOND
             if (data.hoverMessages && data.hoverMessages.length > 0) {
                 data.hoverMessages.forEach((message, index) => {
-                    const bubble = createFloatingBubble(message, index);
-                    floatingContainer.appendChild(bubble);
-                    setTimeout(() => bubble.classList.add('visible'), 50 * (index + 1));
+                    const bubble = createFloatingBubble(message, card, index);
+                    card.appendChild(bubble);
+                    setTimeout(() => {
+                        bubble.classList.add('visible');
+                    }, 50 * index);
                 });
             }
-            
-            card.appendChild(floatingContainer);
-            
-            // Use timeout to allow the element to be added to DOM before adding class for transition
-            setTimeout(() => {
-                floatingContainer.classList.add('visible');
-            }, 10);
         }
 
         function handleMouseLeave(card) {
-            const floatingContainer = card.querySelector('.floating-character-container');
-            if (floatingContainer) {
-                floatingContainer.classList.remove('visible');
-                // Remove from DOM after transition ends
+            const bubbles = card.querySelectorAll('.floating-bubble');
+            bubbles.forEach(bubble => {
+                bubble.classList.remove('visible');
                 setTimeout(() => {
-                    floatingContainer.remove();
-                }, 300); // Must match CSS transition duration
-            }
+                    bubble.remove();
+                }, 400); // Match CSS transition duration
+            });
         }
         
-        function createFloatingBubble(text, index) {
+        function createFloatingBubble(text, cardElement, index) {
             const bubble = document.createElement("div");
             bubble.className = "floating-bubble";
-            
-            // Position bubbles above the image area
-            const yOffset = 30 + (index * 45);
-            bubble.style.left = '50%';
-            bubble.style.top = `-${yOffset}px`;
-
             bubble.innerHTML = `<div class="bubble-content">${text}</div>`;
+
+            const cardRect = cardElement.getBoundingClientRect();
+            const positions = [
+                { top: '0%', left: '50%' },   // Top
+                { top: '50%', left: '100%' }, // Right
+                { top: '100%', left: '50%' }, // Bottom
+                { top: '50%', left: '0%' }    // Left
+            ];
+            
+            const pos = positions[index % positions.length];
+            bubble.style.top = pos.top;
+            bubble.style.left = pos.left;
+
             return bubble;
         }
 
