@@ -102,6 +102,139 @@
       "娜娜早安！",
       "娜娜！"
     ]
-  }
+  },
+     {
+    "id": 7,
+    "channelName": "碧兒 Bill Ch. ",
+    "channelUrl": "https://www.youtube.com/@VtuberBill",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/efaEkO4p9pTdBIGSHHW7xQtG3W8lau6Z5hEV8FDiWmqZbDuZR_dlMCuENLYC41OymUSaTR8Y=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/07_01.png",
+    "characterImageHover": "img/07_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/V_HmMp-wmHg/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/V_HmMp-wmHg?si=ZXdRDNV-PaBwqxR0",
+    "videoTitle": "【腦筋急轉彎】辣個廣告常出現的智力遊戲⚡幫助爺爺奶奶度過冬天...✨✨【BillCh / 碧兒Ch】",
+    "uploadTime": "2025/3/16",
+    "tags": ["電子精靈", "遊戲","比爾數位科技"],
+    "hoverMessages": [
+      "碧兒！",
+      "碧兒快回來碧兒快回來碧兒快回來！",
+	  "QQ",
+    ]
+  },
+     {
+    "id": 8,
+    "channelName": "諾菈 Nolla Ch.",
+    "channelUrl": "https://www.youtube.com/@VtuberNolla",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/ZxCmHavCa8lm40IYXVeD3H1BGvIN94gyJKTgW0KyhqqW-G4SYr0zKja8HL8GUVnCjAu24GBrgg=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/08_01.png",
+    "characterImageHover": "img/08_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/jRcv3aCgxxA/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/jRcv3aCgxxA?si=QABp108YR93oXema",
+    "videoTitle": "【崩壞：星穹鐵道】x【Fate】連動劇情，一起解鎖咖哩棒吧！ | ✧ 諾菈Nolla | 崩鐵直播",
+    "uploadTime": "2025/7/17",
+    "tags": ["水系電子精靈", "遊戲","比爾數位科技"],
+    "hoverMessages": [
+      "辛苦惹",
+      "諾菈菈辛苦了 謝謝妳帶給諾米們開心和陪伴❤！",
+	  "諾菈喜歡直播  所以諾菈想開加班台了🎉🎉  好耶",
+    ]
+  },
+       {
+    "id": 9,
+    "channelName": "白月心宿shuku【KOZMII / 比鄰星域所屬】",
+    "channelUrl": "https://www.youtube.com/@shukukozmii1116",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/zWGTL0AcQ1ltUWEZYPtrLPn3FUXVa-dveCht2zPOyOXhAAzBUAeLsmFdOEloj5V3LJ5gp3TI=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/09_01.png",
+    "characterImageHover": "img/09_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/y3kaimuX58I/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/y3kaimuX58I?si=lGa_CrD0Y8pH6a54",
+    "videoTitle": "【月兔搗藥 EP.06】最終回｜本期主題：分手💔精靈與魔女的戀愛診療室✨【白月心宿】ft.汐海黑兔",
+    "uploadTime": "2025/7/14",
+    "tags": ["shuku", "遊戲","比鄰星域"],
+    "hoverMessages": [
+      "阿白",
+      "白白❤！",
+	  "🎉🎉  好耶",
+    ]
+  },
+       {
+    "id": 10,
+    "channelName": "Sara Ch. 紗羅 【群星計畫 / 比鄰星域所屬】",
+    "channelUrl": "https://www.youtube.com/@vtsara0326",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/lFCueR4aYQm_hSEf7_UEV4PAKoIA_ArNWtfWCwClSdlwTIYTnGheYo_zBVWa8JeE-k25WgPW=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/10_01.png",
+    "characterImageHover": "img/10_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/1Lg2JaKfYnI/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/1Lg2JaKfYnI?si=Ya315WnnPcLoBT4G",
+    "videoTitle": "新常駐雀士「柊木梓」登場🀄明天就要打比賽的紗羅來找學弟妹陪練三人日麻啦！",
+    "uploadTime": "2025/7/11",
+    "tags": ["知識型Vtuber", "遊戲","比鄰星域"],
+    "hoverMessages": [
+      "紗羅加油",
+      "加油ㄡ",
+    ]
+  },
+       {
+    "id": 11,
+    "channelName": "Cecily ch. 西西莉",
+    "channelUrl": "https://www.youtube.com/@Cecily_KBC",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/FUCarLkNKmpe4cd4x-Df7NwQLCbSMhwHnLX0OW78pbW-uTFDDHx7Y0fbRfxdajH-_njaBAzJp68=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/11_01.png",
+    "characterImageHover": "img/11_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/Wb5u42eaqpM/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=Wb5u42eaqpM",
+    "videoTitle": "夏日歌回接力 開場第一浪🎶🌊 ｜療癒祭司西西莉⏱🌟🎶",
+    "uploadTime": "2025/7/12",
+    "tags": ["一期生", "歌回","王國放送局"],
+    "hoverMessages": [
+      "西西莉醬",
+      "可愛又性感",
+	  "西西莉😍😍",
+    ]
+  },
+       {
+    "id": 12,
+    "channelName": "HanaSaki ch. 花咲",
+    "channelUrl": "https://www.youtube.com/@HanaSaki_KBC",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/1aGq3fkbULmUrL1AL5p79qyK9jQ3x0nUskkGhhF_8stIrqd8YAjqJKYkt36FeWSDF4igjmuGrQ=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/12_01.png",
+    "characterImageHover": "img/12_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/j5Vh2qnrfPE/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=j5Vh2qnrfPE",
+    "videoTitle": "【王國娛樂城】沒有NS2甚至NS也要一起玩的吧！| Everybody 1-2-Switch! 🎀魔法少女花咲🎀",
+    "uploadTime": "2025/7/16",
+    "tags": ["魔女咲咲", "遊戲","王國放送局"],
+    "hoverMessages": [
+      "好美",
+      "咲咲🎀🎀🎀",
+    ]
+  },
+       {
+    "id": 13,
+    "channelName": "亞姆Yum ch",
+    "channelUrl": "https://www.youtube.com/@yumthedragon",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/-TLtmS5USsgxYuXhPtECQimgfpuSkpvRvKgXlHTsZCjn7bDBWt_gwnWM2Ff4W8YZpSWzIhyUEA=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/13_01.png",
+    "characterImageHover": "img/13_01.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/67DaZB9cgng/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/67DaZB9cgng?si=aQpWDpOZsVhDKmJ6",
+    "videoTitle": "【雜談】邊工作邊順便抽抽今天的蔚藍檔案！嗚呼！",
+    "uploadTime": "2025/7/16",
+    "tags": ["無性別妖怪", "遊戲","亞姆目擊情報"],
+    "hoverMessages": [
+      "好耶",
+	  "\亞姆真可愛/",
+      "好耶",
+    ]
+  },
+
+
 
 ]
