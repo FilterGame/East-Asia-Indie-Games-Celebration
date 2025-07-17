@@ -850,56 +850,105 @@
       }
     });
     document.addEventListener('DOMContentLoaded', function() {
-    fetch('vt/data.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('vt-container');
-            const grid = document.createElement('div');
-            grid.className = 'card-grid';
-            
-            data.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
+        const container = document.getElementById('vt-container');
+        if (!container) {
+            console.error('Error: The container element #vt-container was not found.');
+            return;
+        }
 
-                const header = document.createElement('div');
-                header.className = 'card-header';
-                const img = document.createElement('img');
-                img.src = item.image;
-                header.appendChild(img);
+        console.log('Starting to fetch YouTuber data from vt/data.json');
 
-                const body = document.createElement('div');
-                body.className = 'card-body';
+        fetch('vt/data.json')
+            .then(response => {
+                console.log('Fetch response received. Status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Successfully parsed JSON data:', data);
+
+                if (!Array.isArray(data)) {
+                    console.error('Error: The loaded data is not an array.', data);
+                    throw new Error('Data format is incorrect. Expected an array.');
+                }
                 
-                const title = document.createElement('h2');
-                title.textContent = item.name;
-                
-                const description = document.createElement('p');
-                description.textContent = item.description;
+                if (data.length === 0) {
+                    console.warn('Data array is empty. Nothing to display.');
+                    container.innerHTML = '<p>目前沒有合作 YouTuber 的資訊。</p>';
+                    return;
+                }
 
-                const socialLinks = document.createElement('div');
-                socialLinks.className = 'social-links';
-                item.social.forEach(link => {
-                    const a = document.createElement('a');
-                    a.href = link.url;
-                    a.textContent = link.name;
-                    a.target = '_blank';
-                    socialLinks.appendChild(a);
+                const grid = document.createElement('div');
+                grid.className = 'card-grid';
+                
+                console.log(`Found ${data.length} items. Starting to generate cards...`);
+                data.forEach((item, index) => {
+                    // Check for essential properties based on the actual JSON structure
+                    if (!item || !item.characterImage || !item.channelName || !item.channelUrl) {
+                        console.warn(`Skipping item at index ${index} due to missing essential properties (characterImage, channelName, channelUrl).`, item);
+                        return; // Skip this item
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    const header = document.createElement('div');
+                    header.className = 'card-header';
+                    const img = document.createElement('img');
+                    img.src = 'vt/' + item.characterImage;
+                    img.alt = item.channelName;
+                    header.appendChild(img);
+
+                    const body = document.createElement('div');
+                    body.className = 'card-body';
+                    
+                    const title = document.createElement('h2');
+                    title.textContent = item.channelName;
+                    
+                    // Use videoTitle as the description, if it exists
+                    const description = document.createElement('p');
+                    description.textContent = item.videoTitle || 'No description available.';
+
+                    // Create a link to the channel
+                    const socialLinks = document.createElement('div');
+                    socialLinks.className = 'social-links';
+                    const channelLink = document.createElement('a');
+                    channelLink.href = item.channelUrl;
+                    channelLink.textContent = 'YouTube Channel';
+                    channelLink.target = '_blank';
+                    socialLinks.appendChild(channelLink);
+
+                    // Optionally, add a link to the specific video
+                    if(item.videoUrl) {
+                        const videoLink = document.createElement('a');
+                        videoLink.href = item.videoUrl;
+                        videoLink.textContent = 'Watch Video';
+                        videoLink.target = '_blank';
+                        socialLinks.appendChild(videoLink);
+                    }
+
+
+                    body.appendChild(title);
+                    body.appendChild(description);
+                    body.appendChild(socialLinks);
+
+                    card.appendChild(header);
+                    card.appendChild(body);
+                    
+                    grid.appendChild(card);
                 });
 
-                body.appendChild(title);
-                body.appendChild(description);
-                body.appendChild(socialLinks);
-
-                card.appendChild(header);
-                card.appendChild(body);
-                
-                grid.appendChild(card);
+                container.innerHTML = ''; 
+                container.appendChild(grid);
+                console.log('Successfully generated and displayed all cards.');
+            })
+            .catch(error => {
+                console.error('An error occurred while loading or processing YouTuber data:', error);
+                container.innerHTML = '<p style="color: red; text-align: center;">無法載入合作 YouTuber 列表。請檢查主控台以獲取更多資訊。</p>';
             });
-
-            container.appendChild(grid);
-        })
-        .catch(error => console.error('Error loading data:', error));
-});
+    });
   </script>
 </body>
 </html>
