@@ -405,7 +405,45 @@
     "hoverMessages": [
 	"鴨鴨!!!"
     ]
+  },
+       {
+    "id": 24,
+    "channelName": "INDIE GAMES 小宇宙",
+    "channelUrl": "https://www.youtube.com/@indiegamescosmo",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/TwrasA348NcHkW_Eb4CH990s6WKR-yrCOQiZc19RZtkB7PgT4KELv_11uGt8tixofMnWUxsy=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/23_01.png",
+    "characterImageHover": "img/23_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/yMi3XNEZ4Mk/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=yMi3XNEZ4Mk",
+    "videoTitle": "【🍊STEAM夏日特賣】23款休閒系遊戲推薦｜✔益智休閒 ✔生活×模擬經營 ✔角色扮演 ✔敘事×解謎冒險",
+    "uploadTime": "2025/7/6",
+    "tags": ["遊戲資訊","遊戲推薦","Steam"],
+    "hoverMessages": [
+	"遊戲資訊分享推薦!"
+    ]
+  },
+       {
+    "id": 25,
+    "channelName": "Gokusai Amae Ch. 極彩天繪",
+    "channelUrl": "https://www.youtube.com/@gokusaiamae0430",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/LIboGCN-x1xgGzu3z7Omuabl_Gql1M9b-ZD-eM09X4OmO8q6e2AjGLdzgzmmxczWtVe0ode9=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/23_01.png",
+    "characterImageHover": "img/23_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/KWJRnbinBRE/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=KWJRnbinBRE",
+    "videoTitle": "【 #天月麻雀 】好像有點久沒打囉~ #觀眾場 #初見大歓迎 【極彩天繪】​",
+    "uploadTime": "2025/7/5",
+    "tags": ["遊戲精靈","遊戲","雜談"],
+    "hoverMessages": [
+	"天繪安安!",
+	"4000訂閱衝刺🎵",
+	"安安"
+    ]
   }
+
+
 
 
 
