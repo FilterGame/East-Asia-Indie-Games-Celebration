@@ -149,13 +149,13 @@
     "characterImage": "img/09_01.png",
     "characterImageHover": "img/09_02.png",
     "characterImageSize": { "width": 230, "height": 450 },
-    "videoThumbnail": "https://i.ytimg.com/vi/y3kaimuX58I/hqdefault.jpg",
-    "videoUrl": "https://www.youtube.com/live/y3kaimuX58I?si=lGa_CrD0Y8pH6a54",
-    "videoTitle": "【月兔搗藥 EP.06】最終回｜本期主題：分手💔精靈與魔女的戀愛診療室✨【白月心宿】ft.汐海黑兔",
-    "uploadTime": "2025/7/14",
-    "tags": ["shuku", "遊戲","比鄰星域"],
+    "videoThumbnail": "https://i.ytimg.com/vi/JVuBDip-iRg/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/live/JVuBDip-iRg?si=lVY9Rd8dnSPi1kMj",
+    "videoTitle": "【東亞獨立遊戲慶典】狐狸！麵包！白白！｜亞路塔：狐狸狐途的麵包冒險/Aeruta【白月心宿】",
+    "uploadTime": "2025/7/22",
+    "tags": ["歌勢", "遊戲","妖狐精靈","比鄰星域"],
     "hoverMessages": [
-      "阿白",
+      "我沒有打外送員",
       "白白❤！",
 	  "🎉🎉  好耶"
     ]
@@ -172,10 +172,12 @@
     "videoUrl": "https://www.youtube.com/live/1Lg2JaKfYnI?si=Ya315WnnPcLoBT4G",
     "videoTitle": "新常駐雀士「柊木梓」登場🀄明天就要打比賽的紗羅來找學弟妹陪練三人日麻啦！",
     "uploadTime": "2025/7/11",
-    "tags": ["知識型Vtuber", "遊戲","比鄰星域"],
+    "tags": ["遊戲", "雜談","知識","萬訂衝刺","比鄰星域"],
     "hoverMessages": [
       "紗羅加油",
-      "加油ㄡ"
+      "加油ㄡ",
+	  "大家的學姐",
+	  "精明擔當"
     ]
   },
        {
@@ -352,9 +354,11 @@
     "videoUrl": "https://www.youtube.com/live/2-A2ycmjqXQ?si=PE_Z2bfmAv120S5_",
     "videoTitle": "【虛境狂潮：異域交匯隊】快使用古琳卡牌，一起組一副王牌牌組吧！",
     "uploadTime": "2025/7/12",
-    "tags": ["遊戲","外星狗"],
+    "tags": ["古琳古mo琳","電玩狗勾","外星狗好可愛","萬訂衝刺"],
     "hoverMessages": [
-      "古琳!"
+      "古琳醬",
+	  "嗨~ #喜歡什麼呢?",
+	  "比起自己玩更喜歡跟大家一起玩"
     ]
   },
        {
