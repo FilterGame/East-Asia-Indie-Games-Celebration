@@ -446,7 +446,26 @@
 	"4000訂閱衝刺🎵",
 	"安安"
     ]
+  },
+
+       {
+    "id": 26,
+    "channelName": "現在不要NOW",
+    "channelUrl": "https://www.youtube.com/@donotnow",
+    "channelAvatarUrl": "https://yt3.ggpht.com/6UeDHGJ9EGhAbi36zQ4VpKfDxOrLt94rKjZNfSBv88i27hidZM8pFpNg-eMVRh16h4DFTWHQ8Q=s88-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/23_01.png",
+    "characterImageHover": "img/23_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/pJeeI_Pn0mM/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=pJeeI_Pn0mM",
+    "videoTitle": "【獨立製作】《即刻離職》團隊專訪！ 清除你的垃圾同事！ Feat.​",
+    "uploadTime": "2023/7/7",
+    "tags": ["現在不要NOW","台北國際電玩展","獨立遊戲專訪","找我們超便宜"],
+    "hoverMessages": [
+	"Piyan"
+    ]
   }
+
 
 
 
