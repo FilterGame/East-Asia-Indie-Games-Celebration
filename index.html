@@ -295,6 +295,7 @@
 
     <!-- Main Content -->
     <main class="flex-1">
+	
       <!-- Hero Banner -->
       <section class="relative bg-gradient-to-r from-orange-900 to-black">
         <div class="container py-8 md:py-16 relative z-10">
@@ -307,13 +308,24 @@
               <p data-i18n="hero_description" class="text-white mb-8">
                 The biggest online game sale event of the year with exclusive deals and special offers!
               </p>
+			  
+			<div class="absolute inset-0 opacity-20 bg-[url('/placeholder.svg?height=200&width=200')] bg-repeat"></div>	
+			 <a href="https://store.steampowered.com/curator/45543967-East-Asia-Indie-Game-Developer/sale/eastasiaindiegames" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 data-i18n="go_to_event"
+                 class="inline-block mt-4 bg-orange-500 text-white font-bold text-xl py-3 px-8 rounded-lg shadow-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-105">
+                前往活動
+              </a>
             </div>
+			
             <div class="relative h-64 md:h-80">
               <img src="gameExpo/header.png" alt="Game Sale Expo Banner" class="object-contain absolute inset-0 w-full h-full" />
             </div>
+			
           </div>
         </div>
-        <div class="absolute inset-0 opacity-20 bg-[url('/placeholder.svg?height=200&width=200')] bg-repeat"></div>
+		
       </section>
 
       <!-- Featured Deals 輪播區 (一次顯示 8 張) -->
@@ -532,7 +544,8 @@
                 discord_title: "Let’s play together!",
                 discord_description: "Whether you're a player, a developer, or a streamer... let's all play together!",
                 Popularity: "Popularity poll + Giveaway event",
-				yt :"List of Collaborating YouTubers"
+				yt :"List of Collaborating YouTubers",
+				go_to_event: "Go to Event" 
             },
             zh: {
                 logo_text: "東亞獨立遊戲慶典",
@@ -562,7 +575,8 @@
                 discord_title: "一起玩吧！",
                 discord_description: "不管你是玩家，還是開發者，或是主播...讓我們一起玩吧!",
                 Popularity: "人氣投票+抽獎活動",
-				yt : "合作Youtuber列表"
+				yt : "合作Youtuber列表",
+				go_to_event: "前往活動"
             },
             "zh-Hans": {
                 logo_text: "东亚独立游戏庆典",
@@ -592,7 +606,8 @@
                 discord_title: "一起玩吧！",
                 discord_description: "不管你是玩家，还是开发者，或是主播...让我们一起玩吧!",
                 Popularity: "人气投票+抽奖活动",
-				yt : "合作Youtuber列表"
+				yt : "合作Youtuber列表",
+				go_to_event: "前往活动"
             },
             ja: {
                 logo_text: "東亞インディーゲームセレブレーション",
@@ -622,7 +637,8 @@
                 discord_title: "一緒に遊ぼう！",
                 discord_description: "プレイヤーでも、開発者でも、配信者でも…みんなで一緒に遊ぼう！",
                 Popularity: "人気投票＋抽選イベント",
-				yt : "コラボ中のYouTuber一覧"
+				yt : "コラボ中のYouTuber一覧",
+				go_to_event: "イベントへ"
             },
             ko: {
                 logo_text: "동아시아 인디 게임 축제",
@@ -652,7 +668,8 @@
                 discord_title: "함께 놀아요!",
                 discord_description: "당신이 플레이어든, 개발자든, 스트리머든... 함께 놀아요!",
                 Popularity: "인기 투표＋추첨 이벤트",
-				yt : "협력 유튜버 목록"
+				yt : "협력 유튜버 목록",
+				go_to_event: "이벤트 바로가기"
             }
         };
 
