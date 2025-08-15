@@ -464,7 +464,27 @@
     "hoverMessages": [
 	"Piyan"
     ]
+  },
+  
+	{
+    "id": 27,
+    "channelName": "狸野梨 Rieri ",
+    "channelUrl": "https://www.youtube.com/@Rieritw",
+    "channelAvatarUrl": "https://yt3.googleusercontent.com/ZDLKBn9ET1JGY4xKqrk_J1iljg24IFnrh4x2UmCx60nQ-r4qu2z1ljWp94Ku2AWB4RT7v_Gqpg=s160-c-k-c0x00ffffff-no-rj",
+    "characterImage": "img/23_01.png",
+    "characterImageHover": "img/23_02.png",
+    "characterImageSize": { "width": 230, "height": 450 },
+    "videoThumbnail": "https://i.ytimg.com/vi/Equ5JHHJiyc/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=Equ5JHHJiyc",
+    "videoTitle": "【#東亞獨立遊戲慶典】〈笠鬼〉、〈舔狗之路〉試玩！兩款異曲同工之處就是過半小時後你們會問主播怎麼還在起始點｜狸野梨 Rieri​",
+    "uploadTime": "2023/7/30",
+    "tags": ["遊戲","歌回","繪圖","個人勢Vtuber"],
+    "hoverMessages": [
+	"謝謝泥 可愛狸貓人"
+    ]
   }
+
+
 
 
 
